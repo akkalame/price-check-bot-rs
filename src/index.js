@@ -188,7 +188,7 @@ Hight Alchemy- 26GP/XP
         haPrice = (xpLeft * 26)/1000000;
 
         r = `**Price Magic ${lvl[0]}-${lvl[1]} ** `;
-        r += `\n\\nSplashing (${lvl[0]}-${lvl[1]})  **${splashPrice.toFixed(2)} M**`;
+        r += `\n\nSplashing (${lvl[0]}-${lvl[1]})  **${splashPrice.toFixed(2)} M**`;
         r += `\nHight Alchemy (${lvl[0]}-${lvl[1]}) **${haPrice.toFixed(2)} M**`
         return r;
     } catch (error) {
