@@ -1090,8 +1090,8 @@ function slayerCalc(q,msg){
 
 function fmCalc(q,msg){
     //$deberia llegar algo como 1-99
-    /*LVL 1->50  - 59GP/XP
-    LVL 50->99 - 19GP/XP
+    /*LVL 1->50  - 50GP/XP
+    LVL 50->99 - 15GP/XP
 */
     try{
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -1104,7 +1104,7 @@ function fmCalc(q,msg){
             if(lvl[1] <= 50){
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59)/1000000;
+                conPrice = (xpLeft * 50)/1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1113,10 +1113,10 @@ function fmCalc(q,msg){
             if(lvl[1] <= 99 & lvl[1] > 50){
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59)/1000000;
+                conPrice = (xpLeft * 50)/1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 19)/1000000;
+                con2Price = (xpLeft * 15)/1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1131,7 +1131,7 @@ function fmCalc(q,msg){
                 if(lvl[1] <= 99 & lvl[1] > 50){
         
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 19)/1000000;
+                    con2Price = (xpLeft * 15)/1000000;
                     
                     totalPrice = con2Price;
 
