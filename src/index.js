@@ -1116,7 +1116,7 @@ function fmCalc(q,msg){
                 conPrice = (xpLeft * 50)/1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 15)/1000000;
+                con2Price = (xpLeft * 16)/1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1131,7 +1131,7 @@ function fmCalc(q,msg){
                 if(lvl[1] <= 99 & lvl[1] > 50){
         
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 15)/1000000;
+                    con2Price = (xpLeft * 16)/1000000;
                     
                     totalPrice = con2Price;
 
