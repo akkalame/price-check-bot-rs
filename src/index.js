@@ -15,9 +15,9 @@ client.on('message', message => {
         var msg = message.content.toLowerCase().trim().split(' ')[0];
 
         if (msg === '!q'){
-            price = questCalc(message.content.toLowerCase().trim());
+            q = questCalc(message.content.toLowerCase().trim());
 
-            enviarMsg(message.channel,price+"m for all of it");
+            enviarMsg(message.channel,q);
 
         }else{
             if (skills.search(msg)){
@@ -1514,15 +1514,61 @@ LVL 50->99 - 19GP/XP
 function questCalc(q){
     var precio = 0;
     var lista, r;
-    this.q = q.substr(3,undefined);
-    
-    lista = this.q.split(',');
-    lista.forEach(element => precio += quests[element.trim()]);
-    
-    return precio;
+    var notExist = '';
+
+    if(q.trim().split(' ')[1].trim() == 'all'){
+        
+        r = questCape(quests);
+    }else{
+        this.q = q.substr(3,undefined);
+        
+        var posicion = this.q.indexOf("'");
+
+        while ( posicion != -1 ) {
+            this.q = this.q.replace("'", '')
+            posicion = this.q.indexOf("'");
+        }
+        posicion = this.q.indexOf(".");
+        
+        while ( posicion != -1 ) {
+            this.q = this.q.replace(".", '')
+            posicion = this.q.indexOf(".");
+        }
+
+        lista = this.q.split(',');
+
+        lista.forEach(function(element){
+            if (quests[element.trim()] != undefined){
+                precio += quests[element.trim()];
+            }else{
+                notExist += ` **${element.trim()}** |`;
+            }
+        });
+        
+        r = `**${precio}m** for all of it.`;
+        if(notExist != ''){
+            r += `\n\nThese quests were not found:\n${notExist}`
+        }
+        
+    }
+    return r;
     //return this.q+String(quests[this.q]);
 
 }
+
+const questCape = (obj, tabSize = 0) => {
+    var total = 0;
+    for (let k in obj) {
+      const v = obj[k];
+      if (Object.prototype.toString.call(v) === '[object Object]') {
+        console.log(`${k}:`);
+        it(v, tabSize + 1);
+      } else {
+        total += v;
+      }
+    }
+    return `**${total}m** for a Quest Cape\n\n(this price is only for quests, the value of skills is not included)`;
+};
 
 function enviarMsg(canal, msg){
     //recibe el canal y el mensaje a enviar
@@ -1530,7 +1576,7 @@ function enviarMsg(canal, msg){
     canal.send(msg);
 }
 
-xpLvl = {
+const xpLvl = {
     '1': 0,'2': 83,'3': 174,'4': 276,'5': 388,'6': 512,'7': 650,'8': 801,'9': 969,'10': 1154,
     '11': 1358,'12': 1584,'13': 1833,'14': 2107,'15': 2411,'16': 2746,'17': 3115,'18': 3523,
     '19': 3973,'20': 4470,'21': 5018,'22': 5624,'23': 6291,'24': 7028,'25': 7842,'26': 8740,
@@ -1545,19 +1591,19 @@ xpLvl = {
     '86': 3597792,'87': 3972294,'88': 4385776,'89': 4842295,'90': 5346332,'91': 5902831,'92': 6517253,
     '93': 7195629,'94': 7944614,'95': 8771558,'96': 9684577,'97': 10692629,'98': 11805606,'99': 13034431
 }
-quests = {
+const quests = {
     "black knights fortress": 1.5,
-    "cook's assistant": 0.5,
+    //"cook's assistant": 0.5,
     "cooks assistant": 0.5,
     "demon slayer":  2,
-    "doric's quest": 0.5,
+    //"doric's quest": 0.5,
     "dorics quest": 0.5,
     "dragon slayer": 4,
     "ernest the chicken": 1,
     "goblin diplomacy": 0.5,
     "imp catcher": 0.5,
     "misthalin mystery": 1.5,
-    "pirate's treasure": 1.5,
+    //"pirate's treasure": 1.5,
     "pirates treasure": 1.5,
     "prince ali rescue": 2,
     "romeo & juliet": 1,
@@ -1565,21 +1611,21 @@ quests = {
     "sheep shearer": 2,
     "shield of arrav": 1.5,
     "the corsair curse": 2,
-    "the knight's sword": 2,
+    //"the knight's sword": 2,
     "the knights sword": 2,
     "the restless ghost": 1,
     "vampire slayer": 1,
-    "witch's potion": 1,
+    //"witch's potion": 1,
     "witchs potion": 1,
     "x marks the spot": 1.5,
     "a porcine of interest": 1.5,
-    "a soul's bane": 2.5,
+    //"a soul's bane": 2.5,
     "a souls bane": 2.5,
     "a tail of two cats": 3.5,
     "a taste of hope": 8,
-    "alfred barcrawl": 2,
+    "alfred brimhands barcrawl": 2,
     "animal magnetism": 4,
-    "another slice of h.a.m": 3,
+    //"another slice of h.a.m": 3,
     "another slice of ham": 3,
     "architectural alliance": 2.5,
     "bear your soul": 2,
@@ -1598,19 +1644,19 @@ quests = {
     "death plateau": 2.5,
     "death to the dorgeshuun": 3,
     "desert treasure": 7.5,
-    "desert treasure 1 prayer": 12.5,
+    //"desert treasure 1 prayer": 12.5,
     "devious minds": 3.5,
     "dragon slayer 2": 26,
     "dream mentor": 5,
     "druidic ritual": 1,
     "dwarf cannon": 2,
-    "eadgar's ruse": 3,
+    //"eadgar's ruse": 3,
     "eadgars ruse": 3,
-    "eagle's peak": 2.5,
+    //"eagle's peak": 2.5,
     "eagles peak": 2.5,
     "elemental workshop 1": 1.5,
     "elemental workshop 2": 2.5,
-    "enakhra's lament": 2.5,
+    //"enakhra's lament": 2.5,
     "enakhras lament": 2.5,
     "enchanted key": 2.5,
     "enlightened journey": 3,
@@ -1623,50 +1669,50 @@ quests = {
     "fishing contest": 1.5,
     "forgettable tale": 5,
     "garden of traunquility": 7.5,
-    "gertrude's cat": 1,
+    //"gertrude's cat": 1,
     "gertrudes cat": 1,
     "ghosts ahoy": 3,
     "grim tales": 3.5,
     "haunted mine": 3.5,
     "hazeel cult": 2,
-    "heroes' quest": 6,
+    //"heroes' quest": 6,
     "heroes quest": 6,
     "holy grail": 2.5,
     "horror from the deep": 3.5,
-    "icthlarin's little helper": 5,
+    //"icthlarin's little helper": 5,
     "icthlarins little helper": 5,
     "in aid of the myreque": 5,
     "in search of knowledge": 5,
     "in search of the myreque": 3.5,
     "jungle potion": 3,
-    "king's ransom": 3.5,
+    //"king's ransom": 3.5,
     "kings ransom": 3.5,
     "lair of tarn razorlor": 2.5,
-    "legends' quest": 6,
+    //"legends' quest": 6,
     "legends quest": 6,
     "lost city": 3,
     "lunar diplomacy": 6,
     "making friends with my arm": 5,
     "making history": 1.5,
-    "merlin's crystal": 2.5,
+    //"merlin's crystal": 2.5,
     "merlins crystal": 2.5,
-    "monk's friend": 1.5,
+    //"monk's friend": 1.5,
     "monks friend": 1.5,
-    "monkey madness 1": 5.5,
+    //"monkey madness 1": 5.5,
     "monkey madness": 5.5,
-    "monkey madness 1 43 prayer": 6.5,
+    //"monkey madness 1 43 prayer": 6.5,
     "monkey madness 2": 28,
     "mountain daughter": 3,
-    "mourning's end part 1": 11,
+    //"mourning's end part 1": 11,
     "mournings end part 1": 11,
-    "mourning's end part 2": 20,
+    //"mourning's end part 2": 20,
     "mournings end part 2": 20,
     "murder mystery": 2,
-    "my arm's big adventure": 3,
+    //"my arm's big adventure": 3,
     "my arms big adventure": 3,
     "nature spirit": 3,
     "observatory quest": 2,
-    "olaf's quest": 2.5,
+    //"olaf's quest": 2.5,
     "olafs quest": 2.5,
     "one small favour": 7,
     "plague city": 2.5,
@@ -1676,25 +1722,25 @@ quests = {
     "ratcatchers": 6,
     "recruitment drive": 2.5,
     "regicide": 6,
-    "regicide 56 agility": 8,
-    "rfd: another cook's quest": 0.5,
-    "rfd: culinaromancer": 4,
-    "rfd: dwarf": 1.5,
-    "rfd: evil dave cat": 4,
-    "rfd: evil dave kitten": 7,
-    "rfd: king awowogei": 5,
-    "rfd: lumbridge guide": 2.5,
-    "rfd: ogre": 3,
-    "rfd: pirate pete": 2,
-    "rfd: sir amik varze": 2.5,
-    "rfd: the goblin generals": 1.5,
+    //"regicide 56 agility": 8,
+    "rfd another cooks quest": 0.5,
+    "rfd culinaromancer": 4,
+    "rfd freeing the mountain dwarf": 1.5,
+    "rfd freeing evil dave": 4,
+    //"rfd evil dave kitten": 7,
+    "rfd freeing king awowogei": 5,
+    "rfd freeing the lumbridge guide": 2.5,
+    "rfd freeing skrach uglogwee": 3,
+    "rfd freeing pirate Pete": 2,
+    "rfd freeing sir amik varze": 2.5,
+    "rfd freeing the goblin generals": 1.5,
     "roving elves": 4,
     "royal trouble": 4,
     "rum deal": 2.5,
     "scorpion catcher": 2,
     "sea slug": 1.5,
     "search of knowledge": 5,
-    "shades of mort'ton": 2.5,
+    "shades of mortton": 2.5,
     "shadow of the storm": 2.5,
     "sheep herder": 2.5,
     "shilo village": 3,
@@ -1716,7 +1762,7 @@ quests = {
     "the fremennik exiles": 6.5,
     "the fremennik isles": 7.5,
     "the fremennik trials": 6,
-    "the general's shadow": 2.5,
+    //"the general's shadow": 2.5,
     "the generals shadow": 2.5,
     "the giant dwarf": 3.5,
     "the golem": 2.5,
@@ -1733,12 +1779,12 @@ quests = {
     "troll romance": 2.5,
     "troll stronghold": 2.5,
     "underground pass": 5,
-    "underground pass 50 agil": 6.5,
+    //"underground pass 50 agil": 6.5,
     "wanted": 3,
     "watchtower": 3,
     "waterfall quest": 2.5,
     "what lies below": 2.5,
-    "witch's house": 2,
+    //"witch's house": 2,
     "witchs house": 2,
     "zogre flesh eaters": 3.5,
 };
