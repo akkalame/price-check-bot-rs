@@ -1,4 +1,4 @@
-/// bot calculador de precios PurgeGold 0.0.1
+/// bot calculador de precios PurgeGold 1.0.1
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -15,7 +15,7 @@ client.on('message', message => {
         var msg = message.content.toLowerCase().trim().split(' ')[0];
 
         if (msg === '!q'){
-            price = questCalc(message.content);
+            price = questCalc(message.content.toLowerCase().trim());
 
             enviarMsg(message.channel,price+"m for all of it");
 
