@@ -4,8 +4,19 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 skills = ' !melee !range !prayer !magic !runecrafting !construction !agility !herblore !thieving !crafting !fletching !slayer !hunter !mining !smithing !fishing !cooking !firemaking !woodcutting !farming !att !str !def !wc !rc !herb !smith !fm';
 
+function presencia(){
+    client.user.setPresence({
+        status: "online",
+        activity: {
+            name: "OSRS - purgeolaf#0702",
+            type: "CUSTOM_STATUS"
+        }
+    });
+}
+
 client.on('ready', () => {
     console.log(`Bot is ready as: ${client.user.tag}`);
+    client.user.setActivity('Purgeolaf#0702', {type: 'WATCHING'});
 })
 
 client.on('message', message => {
