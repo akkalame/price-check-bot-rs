@@ -2,115 +2,114 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-skills = ' !melee !range !prayer !magic !runecrafting !construction !agility !herblore !thieving !crafting !fletching !slayer !hunter !mining !smithing !fishing !cooking !firemaking !woodcutting !farming !att !str !def !wc !rc !herb !smith !fm';
+const { prefix, token, actividad, tipoActividad } = require('./config.json');
+const { purgeGold } = require('./users.json');
+const questsPurge = require(`./quest${purgeGold}.json`);
 
-function presencia(){
-    client.user.setPresence({
-        status: "online",
-        activity: {
-            name: "OSRS - purgeolaf#0702",
-            type: "CUSTOM_STATUS"
-        }
-    });
-}
+quests = {};
+skills = ' !melee !range !prayer !magic !runecrafting !construction !agility !herblore !thieving !crafting !fletching !slayer !hunter !mining !smithing !fishing !cooking !firemaking !woodcutting !farming !att !str !def !wc !rc !herb !smith !fm';
 
 client.on('ready', () => {
     console.log(`Bot is ready as: ${client.user.tag}`);
-    client.user.setActivity('Purgeolaf#0702', {type: 'WATCHING'});
+    client.user.setActivity(actividad, {
+        type: tipoActividad
+    });
 })
 
 client.on('message', message => {
-    if(message.author.id != client.user.id){
-        //recibiendo el mensaje
-        //console.log(message.content);
-        var msg = message.content.toLowerCase().trim().split(' ')[0];
+    if (message.author.id != client.user.id) {
+        if (message.guild.id === purgeGold) {
+            if(message.guild.id === purgeGold){quests = questsPurge;}
+            
+            var msg = message.content.toLowerCase().trim().split(' ')[0];
+            if (msg === `!server`) {
+                enviarMsg(message.channel, `el nombre de este server es: ${message.guild.name}\n id: ${message.guild.id}`);
 
-        if (msg === '!q'){
-            q = questCalc(message.content.toLowerCase().trim());
+            }
+            if (msg === `${prefix}q`) {
+                q = questCalc(message.content.toLowerCase().trim());
 
-            enviarMsg(message.channel,q);
+                enviarMsg(message.channel, q);
 
-        }else{
-            if (skills.search(msg)){
+            } else if (skills.search(msg)) {
                 q = ' ';
                 switch (msg) {
                     case '!melee':
-                        q = meleeCalc(message.content.trim().split(' ')[1],msg);
+                        q = meleeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!range':
-                        q = rangeCalc(message.content.trim().split(' ')[1],msg);
+                        q = rangeCalc(message.content.trim().split(' ')[1], msg);
                         break;
-                        case '!prayer':
-                            q = prayerCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!magic':
-                            q = magicCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!runecrafting':
-                            q = runecraftingCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!construction':
-                            q = constructionCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!agility':
-                            q = agilityCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!herblore':
-                            q = herbCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!thieving':
-                            q = thievingCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!crafting':
-                            q = craftingCalc(message.content.trim().split(' ')[1],msg);
+                    case '!prayer':
+                        q = prayerCalc(message.content.trim().split(' ')[1], msg);
                         break;
-                        case '!fletching':
-                            q = fletchingCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!slayer':
-                            q = slayerCalc(message.content.trim().split(' ')[1]),msg;
-                            break;
-                        case '!hunter':
-                            q = hunterCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!mining':
-                            q = miningCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!smithing':
-                            q = smithCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!fishing':
-                            q = fishCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!cooking':
-                            q = cookCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!firemaking':
-                            q = fmCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!woodcutting':
-                            q = wcCalc(message.content.trim().split(' ')[1],msg);
-                            break;
-                        case '!farming':
-                            q = farmCalc(message.content.trim().split(' ')[1],msg);
-                            break;
+                    case '!magic':
+                        q = magicCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!runecrafting':
+                        q = runecraftingCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!construction':
+                        q = constructionCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!agility':
+                        q = agilityCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!herblore':
+                        q = herbCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!thieving':
+                        q = thievingCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!crafting':
+                        q = craftingCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!fletching':
+                        q = fletchingCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!slayer':
+                        q = slayerCalc(message.content.trim().split(' ')[1]), msg;
+                        break;
+                    case '!hunter':
+                        q = hunterCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!mining':
+                        q = miningCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!smithing':
+                        q = smithCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!fishing':
+                        q = fishCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!cooking':
+                        q = cookCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!firemaking':
+                        q = fmCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!woodcutting':
+                        q = wcCalc(message.content.trim().split(' ')[1], msg);
+                        break;
+                    case '!farming':
+                        q = farmCalc(message.content.trim().split(' ')[1], msg);
+                        break;
 
-                        default:
-                            break;
+                    default:
+                        break;
                 }
 
-                enviarMsg(message.channel,q);
-            }  
+                enviarMsg(message.channel, q);
+            }
         }
     }
 })
 
-client.login('ODAxODI0Mjk0Mjc0NTk2ODY0.YAmTEA.V8P-hj4DL8qBzgheAMnOf4nVfeU');
-
+client.login(token);
 
 /// aqui se calculan los precios de las skill y las quest, recibiendo determinados parametros
 
-function meleeCalc(q,msg){
+function meleeCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*valores referenciales del precio
     LVL 1->70 SAND CRABS - 19GP/XP
@@ -118,30 +117,30 @@ function meleeCalc(q,msg){
     LVL 70->99 SAND CRABS - 12GP/XP 
     LVL 70->99 NMZ - 10.5GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price Melee ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 70){
+        if (lvl[0] < 70) {
 
-            if(lvl[1] <= 70){
+            if (lvl[1] <= 70) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 19)/1000000;
+                conPrice = (xpLeft * 19) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 70){
+            if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 19)/1000000;
+                conPrice = (xpLeft * 19) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 10.5)/1000000;
+                con2Price = (xpLeft * 10.5) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -150,42 +149,42 @@ function meleeCalc(q,msg){
                 r += `\nNMZ (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 12)/1000000;
+                con2Price = (xpLeft * 12) / 1000000;
 
                 r += `\nSand Crabs (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 70){
+        } else {
+            if (lvl[0] >= 70) {
 
-                if(lvl[1] <= 99 & lvl[1] > 70){
-        
+                if (lvl[1] <= 99 & lvl[1] > 70) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 10.5)/1000000;
-                    
+                    con2Price = (xpLeft * 10.5) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nNMZ (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 12)/1000000;
-                    
+                    con2Price = (xpLeft * 12) / 1000000;
+
                     r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
         return r;
     } catch (error) {
-        return `Right command is: \n\n **${msg} 1-99 **`;
+        return `Right command is: \n\n **${prefix}${msg} 1-99 **`;
     }
-    
+
 
 }
 
-function rangeCalc(q,msg){
+function rangeCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*valores referenciales del precio
     LVL 1->70 SAND CRABS - 19GP/XP
@@ -193,84 +192,84 @@ function rangeCalc(q,msg){
     LVL 70->99 SAND CRABS - 12GP/XP 
     LVL 70->99 NMZ - 10.5GP/XP
 */
-try{
-    var conPrice, con2Price, xpLeft, totalPrice, r;
-    var lvl = q.split('-');
+    try {
+        var conPrice, con2Price, xpLeft, totalPrice, r;
+        var lvl = q.split('-');
 
-    r = `**Price Range ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price Range ${lvl[0]}-${lvl[1]} ** `;
 
-    if (lvl[0] < 70){
+        if (lvl[0] < 70) {
 
-        if(lvl[1] <= 70){
+            if (lvl[1] <= 70) {
 
-            xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-            conPrice = (xpLeft * 19)/1000000;
-            totalPrice = conPrice;
-
-            r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
-            r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
-        }
-        if(lvl[1] <= 99 & lvl[1] > 70){
-
-            xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-            conPrice = (xpLeft * 19)/1000000;
-
-            xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-            con2Price = (xpLeft * 10.5)/1000000;
-
-            totalPrice = conPrice + con2Price;
-
-            r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
-            r += `\n\nSand Crabs (${lvl[0]}-70)  **${conPrice.toFixed(2)} M** `;
-            r += `\nNMZ (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
-
-            xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-            con2Price = (xpLeft * 12)/1000000;
-
-            r += `\nSand Crabs (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
-        }
-
-    }else{
-        if (lvl[0] >= 70){
-
-            if(lvl[1] <= 99 & lvl[1] > 70){
-    
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                con2Price = (xpLeft * 10.5)/1000000;
-                
-                totalPrice = con2Price;
+                conPrice = (xpLeft * 19) / 1000000;
+                totalPrice = conPrice;
 
                 r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
-                r += `\n\nNMZ (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
-
-                xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                con2Price = (xpLeft * 12)/1000000;
-                
-                r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
+                r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-    
+            if (lvl[1] <= 99 & lvl[1] > 70) {
+
+                xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
+                conPrice = (xpLeft * 19) / 1000000;
+
+                xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
+                con2Price = (xpLeft * 10.5) / 1000000;
+
+                totalPrice = conPrice + con2Price;
+
+                r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
+                r += `\n\nSand Crabs (${lvl[0]}-70)  **${conPrice.toFixed(2)} M** `;
+                r += `\nNMZ (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
+
+                xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
+                con2Price = (xpLeft * 12) / 1000000;
+
+                r += `\nSand Crabs (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
+            }
+
+        } else {
+            if (lvl[0] >= 70) {
+
+                if (lvl[1] <= 99 & lvl[1] > 70) {
+
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
+                    con2Price = (xpLeft * 10.5) / 1000000;
+
+                    totalPrice = con2Price;
+
+                    r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
+                    r += `\n\nNMZ (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
+
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
+                    con2Price = (xpLeft * 12) / 1000000;
+
+                    r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
+                }
+
+            }
         }
+
+        return r;
+    } catch (error) {
+        return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
-    return r;
-} catch (error) {
-    return `Right command is: \n\n **${msg} 1-99 **`;
 }
 
-}
-
-function prayerCalc(q,msg){
+function prayerCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->99 (Gilded altar) - 12GP/XP
 LVL 1-99 With Arceus spell (best ensouled head you can use) 29GP/XP
 */
-    try{
+    try {
         var gilderPrice, arceusPrice, r;
         var lvl = q.split('-');
         var xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
 
-        gilderPrice = (xpLeft * 12)/1000000;
-        arceusPrice = (xpLeft * 29)/1000000;
+        gilderPrice = (xpLeft * 12) / 1000000;
+        arceusPrice = (xpLeft * 29) / 1000000;
 
         r = `**Price Prayer ${lvl[0]}-${lvl[1]} **`;
         r += `\n\nGilder Altar (${lvl[0]}-${lvl[1]})  **${gilderPrice.toFixed(2)} M**`;
@@ -282,18 +281,18 @@ LVL 1-99 With Arceus spell (best ensouled head you can use) 29GP/XP
 
 }
 
-function magicCalc(q,msg){
+function magicCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*SPLASHING - 19.5GP/XP
 Hight Alchemy- 21.5GP/XP
 */
-    try{
+    try {
         var splashPrice, haPrice, r;
         var lvl = q.split('-');
         var xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
 
-        splashPrice = (xpLeft * 19.5)/1000000;
-        haPrice = (xpLeft * 21.5)/1000000;
+        splashPrice = (xpLeft * 19.5) / 1000000;
+        haPrice = (xpLeft * 21.5) / 1000000;
 
         r = `**Price Magic ${lvl[0]}-${lvl[1]} ** `;
         r += `\n\nSplashing (${lvl[0]}-${lvl[1]})  **${splashPrice.toFixed(2)} M**`;
@@ -305,108 +304,108 @@ Hight Alchemy- 21.5GP/XP
 
 }
 
-function wcCalc(q,msg){
+function wcCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->51  - 75GP/XP
     LVL 51->70 - 47GP/XP
     LVL 70->99 - 37GP/XP
 */
-    try{
+    try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price Woodcutting  ${lvl[0]}-${lvl[1]} **`;
 
         //lava
-        if (lvl[0] < 51){
+        if (lvl[0] < 51) {
 
-            if(lvl[1] <= 51){
+            if (lvl[1] <= 51) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 75)/1000000;
+                fPrice = (xpLeft * 75) / 1000000;
                 r += `\nBest way  **${fPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 70 & lvl[1] > 51){
+            if (lvl[1] <= 70 & lvl[1] > 51) {
 
                 xpLeft = Math.abs(xpLvl['51'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 75)/1000000;
-                
+                fPrice = (xpLeft * 75) / 1000000;
+
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['51'])
-                lavaPrice = (xpLeft * 47)/1000000;
+                lavaPrice = (xpLeft * 47) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nBest way (${lvl[0]}-51) **${fPrice.toFixed(2)} M** `; 
+                r += `\nBest way (${lvl[0]}-51) **${fPrice.toFixed(2)} M** `;
                 r += `\nWillow (51-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 70){
+            if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['51'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 75)/1000000;
-                
+                fPrice = (xpLeft * 75) / 1000000;
+
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl['51'])
-                lavaPrice = (xpLeft * 47)/1000000;
+                lavaPrice = (xpLeft * 47) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                lava2Price = (xpLeft * 37)/1000000;
+                lava2Price = (xpLeft * 37) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nBest way (${lvl[0]}-51) **${fPrice.toFixed(2)} M** `; 
+                r += `\nBest way (${lvl[0]}-51) **${fPrice.toFixed(2)} M** `;
                 r += `\nWillow (51-70)  **${lavaPrice.toFixed(2)} M** `;
                 r += `\nWillow (70-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] < 70){
+        } else {
+            if (lvl[0] < 70) {
 
-                if(lvl[1] <= 70 & lvl[1] > 51){
-        
-                    
+                if (lvl[1] <= 70 & lvl[1] > 51) {
+
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['51'])
-                    lavaPrice = (xpLeft * 47)/1000000;
-        
+                    lavaPrice = (xpLeft * 47) / 1000000;
+
                     totalPrice = lavaPrice;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nWillow (${lvl[0]}-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
                 }
-                if(lvl[1] <= 99 & lvl[1] > 70){
-                    
+                if (lvl[1] <= 99 & lvl[1] > 70) {
+
                     xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 47)/1000000;
-        
+                    lavaPrice = (xpLeft * 47) / 1000000;
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                    lava2Price = (xpLeft * 37)/1000000;
-        
+                    lava2Price = (xpLeft * 37) / 1000000;
+
                     totalPrice = lavaPrice + lava2Price;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nWillow (${lvl[0]}-70)  **${lavaPrice.toFixed(2)} M** `;
                     r += `\nWillow (70-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
                 }
-        
-            }else{
-                if (lvl[0] <= 99){
 
-                    if(lvl[1] <= 99 & lvl[1] > 70){
-            
+            } else {
+                if (lvl[0] <= 99) {
+
+                    if (lvl[1] <= 99 & lvl[1] > 70) {
+
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                        lava2Price = (xpLeft * 37)/1000000;
-            
+                        lava2Price = (xpLeft * 37) / 1000000;
+
                         totalPrice = lava2Price;
-            
+
                         r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                         r += `\nWillow (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
-            
+
                     }
-            
+
                 }
             }
         }
-    
+
         return r;
     } catch (error) {
         return `Right command is: \n\n **${msg} 1-99 **`;
@@ -414,108 +413,108 @@ function wcCalc(q,msg){
 
 }
 
-function thievingCalc(q,msg){
+function thievingCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 01->55 - 89GP/XP
     LVL 55->80 - 59GP/XP
     LVL 80->99 - 39GP/XP
 */
-    try{
+    try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price Thieving ${lvl[0]}-${lvl[1]} **`;
 
         //lava
-        if (lvl[0] < 55){
+        if (lvl[0] < 55) {
 
-            if(lvl[1] <= 55){
+            if (lvl[1] <= 55) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89)/1000000;
+                fPrice = (xpLeft * 89) / 1000000;
                 r += `\nAny way  **${fPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 80 & lvl[1] > 55){
+            if (lvl[1] <= 80 & lvl[1] > 55) {
 
                 xpLeft = Math.abs(xpLvl['55'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89)/1000000;
-                
+                fPrice = (xpLeft * 89) / 1000000;
+
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['55'])
-                lavaPrice = (xpLeft * 59)/1000000;
+                lavaPrice = (xpLeft * 59) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nAny way (${lvl[0]}-55) **${fPrice.toFixed(2)} M** `; 
+                r += `\nAny way (${lvl[0]}-55) **${fPrice.toFixed(2)} M** `;
                 r += `\nPyramid (55-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 80){
+            if (lvl[1] <= 99 & lvl[1] > 80) {
 
                 xpLeft = Math.abs(xpLvl['55'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89)/1000000;
-                
+                fPrice = (xpLeft * 89) / 1000000;
+
                 xpLeft = Math.abs(xpLvl['80'] - xpLvl['55'])
-                lavaPrice = (xpLeft * 59)/1000000;
+                lavaPrice = (xpLeft * 59) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
-                lava2Price = (xpLeft * 39)/1000000;
+                lava2Price = (xpLeft * 39) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nAny way (${lvl[0]}-55) **${fPrice.toFixed(2)} M** `; 
+                r += `\nAny way (${lvl[0]}-55) **${fPrice.toFixed(2)} M** `;
                 r += `\nPyramid (55-80)  **${lavaPrice.toFixed(2)} M** `;
                 r += `\nPyramid (80-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] < 80){
+        } else {
+            if (lvl[0] < 80) {
 
-                if(lvl[1] <= 80 & lvl[1] > 55){
-        
-                    
+                if (lvl[1] <= 80 & lvl[1] > 55) {
+
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['55'])
-                    lavaPrice = (xpLeft * 59)/1000000;
-        
+                    lavaPrice = (xpLeft * 59) / 1000000;
+
                     totalPrice = lavaPrice;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nPyramid (${lvl[0]}-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
                 }
-                if(lvl[1] <= 99 & lvl[1] > 80){
-                    
+                if (lvl[1] <= 99 & lvl[1] > 80) {
+
                     xpLeft = Math.abs(xpLvl['80'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 59)/1000000;
-        
+                    lavaPrice = (xpLeft * 59) / 1000000;
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
-                    lava2Price = (xpLeft * 39)/1000000;
-        
+                    lava2Price = (xpLeft * 39) / 1000000;
+
                     totalPrice = lavaPrice + lava2Price;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nPyramid (${lvl[0]}-80)  **${lavaPrice.toFixed(2)} M** `;
                     r += `\nPyramid (80-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
                 }
-        
-            }else{
-                if (lvl[0] <= 99){
 
-                    if(lvl[1] <= 99 & lvl[1] > 80){
-            
+            } else {
+                if (lvl[0] <= 99) {
+
+                    if (lvl[1] <= 99 & lvl[1] > 80) {
+
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
-                        lava2Price = (xpLeft * 39)/1000000;
-            
+                        lava2Price = (xpLeft * 39) / 1000000;
+
                         totalPrice = lava2Price;
-            
+
                         r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                         r += `\nPyramid (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
-            
+
                     }
-            
+
                 }
             }
         }
-    
+
         return r;
     } catch (error) {
         return `Right command is: \n\n **${msg} 1-99 **`;
@@ -523,108 +522,108 @@ function thievingCalc(q,msg){
 
 }
 
-function fishCalc(q,msg){
+function fishCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->50  - 59GP/XP
     LVL 50->70 - 39GP/XP
     LVL 70->99 - 29GP/XP
 */
-    try{
+    try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price Fishing ${lvl[0]}-${lvl[1]} **`;
 
         //lava
-        if (lvl[0] < 50){
+        if (lvl[0] < 50) {
 
-            if(lvl[1] <= 50){
+            if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 59)/1000000;
+                fPrice = (xpLeft * 59) / 1000000;
                 r += `\nBest way  **${fPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 70 & lvl[1] > 50){
+            if (lvl[1] <= 70 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 59)/1000000;
-                
+                fPrice = (xpLeft * 59) / 1000000;
+
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                lavaPrice = (xpLeft * 39)/1000000;
+                lavaPrice = (xpLeft * 39) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nBest way (${lvl[0]}-50) **${fPrice.toFixed(2)} M** `; 
+                r += `\nBest way (${lvl[0]}-50) **${fPrice.toFixed(2)} M** `;
                 r += `\nBest way (50-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 70){
+            if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 59)/1000000;
-                
+                fPrice = (xpLeft * 59) / 1000000;
+
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl['50'])
-                lavaPrice = (xpLeft * 39)/1000000;
+                lavaPrice = (xpLeft * 39) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                lava2Price = (xpLeft * 29)/1000000;
+                lava2Price = (xpLeft * 29) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nBest way (${lvl[0]}-50) **${fPrice.toFixed(2)} M** `; 
+                r += `\nBest way (${lvl[0]}-50) **${fPrice.toFixed(2)} M** `;
                 r += `\nBest way (50-70)  **${lavaPrice.toFixed(2)} M** `;
                 r += `\nBest way (70-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] < 70){
+        } else {
+            if (lvl[0] < 70) {
 
-                if(lvl[1] <= 70 & lvl[1] > 50){
-        
-                    
+                if (lvl[1] <= 70 & lvl[1] > 50) {
+
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                    lavaPrice = (xpLeft * 39)/1000000;
-        
+                    lavaPrice = (xpLeft * 39) / 1000000;
+
                     totalPrice = lavaPrice;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nBest way (${lvl[0]}-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
                 }
-                if(lvl[1] <= 99 & lvl[1] > 70){
-                    
+                if (lvl[1] <= 99 & lvl[1] > 70) {
+
                     xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 39)/1000000;
-        
+                    lavaPrice = (xpLeft * 39) / 1000000;
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                    lava2Price = (xpLeft * 29)/1000000;
-        
+                    lava2Price = (xpLeft * 29) / 1000000;
+
                     totalPrice = lavaPrice + lava2Price;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nBest way (${lvl[0]}-70)  **${lavaPrice.toFixed(2)} M** `;
                     r += `\nBest way (70-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
                 }
-        
-            }else{
-                if (lvl[0] <= 99){
 
-                    if(lvl[1] <= 99 & lvl[1] > 70){
-            
+            } else {
+                if (lvl[0] <= 99) {
+
+                    if (lvl[1] <= 99 & lvl[1] > 70) {
+
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                        lava2Price = (xpLeft * 29)/1000000;
-            
+                        lava2Price = (xpLeft * 29) / 1000000;
+
                         totalPrice = lava2Price;
-            
+
                         r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                         r += `\nBest way (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
-            
+
                     }
-            
+
                 }
             }
         }
-    
+
         return r;
     } catch (error) {
         return `Right command is: \n\n **${msg} 1-99 **`;
@@ -632,108 +631,108 @@ function fishCalc(q,msg){
 
 }
 
-function hunterCalc(q,msg){
+function hunterCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->30  - 89GP/XP
     LVL 30->60 - 79GP/XP
     LVL 60->99 - 50GP/XP
 */
-    try{
+    try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price Hunter ${lvl[0]}-${lvl[1]} **`;
 
         //lava
-        if (lvl[0] < 30){
+        if (lvl[0] < 30) {
 
-            if(lvl[1] <= 30){
+            if (lvl[1] <= 30) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89)/1000000;
+                fPrice = (xpLeft * 89) / 1000000;
                 r += `\nBirds  **${fPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 60 & lvl[1] > 30){
+            if (lvl[1] <= 60 & lvl[1] > 30) {
 
                 xpLeft = Math.abs(xpLvl['30'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89)/1000000;
-                
+                fPrice = (xpLeft * 89) / 1000000;
+
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['30'])
-                lavaPrice = (xpLeft * 79)/1000000;
+                lavaPrice = (xpLeft * 79) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nBirds (${lvl[0]}-30) **${fPrice.toFixed(2)} M** `; 
+                r += `\nBirds (${lvl[0]}-30) **${fPrice.toFixed(2)} M** `;
                 r += `\nSalamanders (30-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 60){
+            if (lvl[1] <= 99 & lvl[1] > 60) {
 
                 xpLeft = Math.abs(xpLvl['30'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89)/1000000;
-                
+                fPrice = (xpLeft * 89) / 1000000;
+
                 xpLeft = Math.abs(xpLvl['60'] - xpLvl['30'])
-                lavaPrice = (xpLeft * 79)/1000000;
+                lavaPrice = (xpLeft * 79) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                lava2Price = (xpLeft * 50)/1000000;
+                lava2Price = (xpLeft * 50) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nBirds (${lvl[0]}-30) **${fPrice.toFixed(2)} M** `; 
+                r += `\nBirds (${lvl[0]}-30) **${fPrice.toFixed(2)} M** `;
                 r += `\nSalamanders (30-60)  **${lavaPrice.toFixed(2)} M** `;
                 r += `\nSalamanders (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] < 60){
+        } else {
+            if (lvl[0] < 60) {
 
-                if(lvl[1] <= 60 & lvl[1] > 30){
-        
-                    
+                if (lvl[1] <= 60 & lvl[1] > 30) {
+
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['30'])
-                    lavaPrice = (xpLeft * 79)/1000000;
-        
+                    lavaPrice = (xpLeft * 79) / 1000000;
+
                     totalPrice = lavaPrice;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nSalamanders (${lvl[0]}-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
                 }
-                if(lvl[1] <= 99 & lvl[1] > 60){
-                    
+                if (lvl[1] <= 99 & lvl[1] > 60) {
+
                     xpLeft = Math.abs(xpLvl['60'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 79)/1000000;
-        
+                    lavaPrice = (xpLeft * 79) / 1000000;
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                    lava2Price = (xpLeft * 50)/1000000;
-        
+                    lava2Price = (xpLeft * 50) / 1000000;
+
                     totalPrice = lavaPrice + lava2Price;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nSalamanders (${lvl[0]}-60)  **${lavaPrice.toFixed(2)} M** `;
                     r += `\nSalamanders (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
                 }
-        
-            }else{
-                if (lvl[0] <= 99){
 
-                    if(lvl[1] <= 99 & lvl[1] > 60){
-            
+            } else {
+                if (lvl[0] <= 99) {
+
+                    if (lvl[1] <= 99 & lvl[1] > 60) {
+
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                        lava2Price = (xpLeft * 50)/1000000;
-            
+                        lava2Price = (xpLeft * 50) / 1000000;
+
                         totalPrice = lava2Price;
-            
+
                         r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                         r += `\nSalamanders (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
-            
+
                     }
-            
+
                 }
             }
         }
-    
+
         return r;
     } catch (error) {
         return `Right command is: \n\n **${msg} 1-99 **`;
@@ -741,7 +740,7 @@ function hunterCalc(q,msg){
 
 }
 
-function runecraftingCalc(q,msg){
+function runecraftingCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->23 - 160GP/XP
     LVL 23->60 (LAVAS *LUNAR DIPLO REQ*) - 150GP/XP
@@ -749,102 +748,102 @@ function runecraftingCalc(q,msg){
     LVL 1->50 (ZMI)  - 140GP/XP
     LVL 50->99 (ZMI) - 100GP/XP
 */
-    try{
+    try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price Runecrafting ${lvl[0]}-${lvl[1]} **`;
 
         //lava
-        if (lvl[0] < 23){
+        if (lvl[0] < 23) {
 
-            if(lvl[1] <= 23){
+            if (lvl[1] <= 23) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 160)/1000000;
+                fPrice = (xpLeft * 160) / 1000000;
                 r += `\nRegular way  **${fPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 60 & lvl[1] > 23){
+            if (lvl[1] <= 60 & lvl[1] > 23) {
 
                 xpLeft = Math.abs(xpLvl['23'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 160)/1000000;
-                
+                fPrice = (xpLeft * 160) / 1000000;
+
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['23'])
-                lavaPrice = (xpLeft * 150)/1000000;
+                lavaPrice = (xpLeft * 150) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nRegular way (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `; 
+                r += `\nRegular way (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (23-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 60){
+            if (lvl[1] <= 99 & lvl[1] > 60) {
 
                 xpLeft = Math.abs(xpLvl['23'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 160)/1000000;
-                
+                fPrice = (xpLeft * 160) / 1000000;
+
                 xpLeft = Math.abs(xpLvl['60'] - xpLvl['23'])
-                lavaPrice = (xpLeft * 150)/1000000;
+                lavaPrice = (xpLeft * 150) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                lava2Price = (xpLeft * 90)/1000000;
+                lava2Price = (xpLeft * 90) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nRegular way (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `; 
+                r += `\nRegular way (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (23-60)  **${lavaPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] < 60){
+        } else {
+            if (lvl[0] < 60) {
 
-                if(lvl[1] <= 60 & lvl[1] > 23){
-        
-                    
+                if (lvl[1] <= 60 & lvl[1] > 23) {
+
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['23'])
-                    lavaPrice = (xpLeft * 150)/1000000;
-        
+                    lavaPrice = (xpLeft * 150) / 1000000;
+
                     totalPrice = lavaPrice;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nLava Runes/ZMI (${lvl[0]}-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
                 }
-                if(lvl[1] <= 99 & lvl[1] > 60){
-                    
+                if (lvl[1] <= 99 & lvl[1] > 60) {
+
                     xpLeft = Math.abs(xpLvl['60'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 150)/1000000;
-        
+                    lavaPrice = (xpLeft * 150) / 1000000;
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                    lava2Price = (xpLeft * 90)/1000000;
-        
+                    lava2Price = (xpLeft * 90) / 1000000;
+
                     totalPrice = lavaPrice + lava2Price;
-        
+
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nLava Runes/ZMI (${lvl[0]}-60)  **${lavaPrice.toFixed(2)} M** `;
                     r += `\nLava Runes/ZMI (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
                 }
-        
-            }else{
-                if (lvl[0] <= 99){
 
-                    if(lvl[1] <= 99 & lvl[1] > 60){
-            
+            } else {
+                if (lvl[0] <= 99) {
+
+                    if (lvl[1] <= 99 & lvl[1] > 60) {
+
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                        lava2Price = (xpLeft * 90)/1000000;
-            
+                        lava2Price = (xpLeft * 90) / 1000000;
+
                         totalPrice = lava2Price;
-            
+
                         r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
                         r += `\nLava Runes/ZMI (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
-            
+
                     }
-            
+
                 }
             }
         }
-    
+
         return r;
     } catch (error) {
         return `Right command is: \n\n **${msg} 1-99 **`;
@@ -852,35 +851,35 @@ function runecraftingCalc(q,msg){
 
 }
 
-function constructionCalc(q,msg){
+function constructionCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->52  - 49GP/XP
     LVL 52->99 - 16GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Construction ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 52){
+        if (lvl[0] < 52) {
 
-            if(lvl[1] <= 52){
+            if (lvl[1] <= 52) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 49)/1000000;
+                conPrice = (xpLeft * 49) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nAny type (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 52){
+            if (lvl[1] <= 99 & lvl[1] > 52) {
 
                 xpLeft = Math.abs(xpLvl['52'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 49)/1000000;
+                conPrice = (xpLeft * 49) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['52'])
-                con2Price = (xpLeft * 16)/1000000;
+                con2Price = (xpLeft * 16) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -889,20 +888,20 @@ function constructionCalc(q,msg){
                 r += `\nAny type (52-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 52){
+        } else {
+            if (lvl[0] >= 52) {
 
-                if(lvl[1] <= 99 & lvl[1] > 52){
-        
+                if (lvl[1] <= 99 & lvl[1] > 52) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 16)/1000000;
-                    
+                    con2Price = (xpLeft * 16) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nAny type (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -913,35 +912,35 @@ function constructionCalc(q,msg){
 
 }
 
-function farmCalc(q,msg){
+function farmCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->34  - 79gp/XP  
     LVL 34->99 - 45gp/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Farming  ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 34){
+        if (lvl[0] < 34) {
 
-            if(lvl[1] <= 34){
+            if (lvl[1] <= 34) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 79)/1000000;
+                conPrice = (xpLeft * 79) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\ntree-allotments-herbs (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 34){
+            if (lvl[1] <= 99 & lvl[1] > 34) {
 
                 xpLeft = Math.abs(xpLvl['34'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 79)/1000000;
+                conPrice = (xpLeft * 79) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['34'])
-                con2Price = (xpLeft * 45)/1000000;
+                con2Price = (xpLeft * 45) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -950,20 +949,20 @@ function farmCalc(q,msg){
                 r += `\nTithe farm (34-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 34){
+        } else {
+            if (lvl[0] >= 34) {
 
-                if(lvl[1] <= 99 & lvl[1] > 34){
-        
+                if (lvl[1] <= 99 & lvl[1] > 34) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 45)/1000000;
-                    
+                    con2Price = (xpLeft * 45) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nTithe farm (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -975,13 +974,13 @@ function farmCalc(q,msg){
 }
 
 
-function cookCalc(q,msg){
+function cookCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->70 - 75GP/XP
     LVL 70->99 (FISH) - 30GP/XP
     LVL 35->99 (WINNES) - 19GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var winePrice = 0;
         var cookPrice = 0;
@@ -989,79 +988,79 @@ function cookCalc(q,msg){
 
         r = `**Price Cooking ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 70){
+        if (lvl[0] < 70) {
 
-            if(lvl[1] <= 70){
+            if (lvl[1] <= 70) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                conPrice = (xpLeft * 75)/1000000;
+                conPrice = (xpLeft * 75) / 1000000;
 
                 //wine
-                if (lvl[0] >= 35){
+                if (lvl[0] >= 35) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 19)/1000000;
+                    winePrice = (xpLeft * 19) / 1000000;
 
-                    totalPrice = winePrice; 
-                }else{
-                    if (lvl[1] > 35){
+                    totalPrice = winePrice;
+                } else {
+                    if (lvl[1] > 35) {
                         xpLeft = Math.abs(xpLvl['35'] - xpLvl[lvl[0]]);
-                        cookPrice = (xpLeft * 75)/1000000;
+                        cookPrice = (xpLeft * 75) / 1000000;
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['35']);
-                        winePrice = (xpLeft * 19)/1000000;
+                        winePrice = (xpLeft * 19) / 1000000;
 
-                        totalPrice = winePrice + cookPrice; 
-                    }else{
-                        totalPrice = conPrice; 
+                        totalPrice = winePrice + cookPrice;
+                    } else {
+                        totalPrice = conPrice;
                     }
                 }
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
-                
-                if(winePrice > 0){
-                    if(cookPrice > 0){
+
+                if (winePrice > 0) {
+                    if (cookPrice > 0) {
                         r += `\n\nFish (${lvl[0]}-35)  **${cookPrice.toFixed(2)} M** `;
                         r += `\nWines (35-${lvl[1]})  **${winePrice.toFixed(2)} M** `;
-                    }else{
+                    } else {
                         r += `\n\nWines (${lvl[0]}-${lvl[1]})  **${winePrice.toFixed(2)} M** `;
                     }
                 }
-                
+
                 r += `\n\nFish (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 70){
+            if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 75)/1000000;
+                conPrice = (xpLeft * 75) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 30)/1000000;
+                con2Price = (xpLeft * 30) / 1000000;
 
                 //wine
-                if (lvl[0] >= 35){
+                if (lvl[0] >= 35) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 19)/1000000;
+                    winePrice = (xpLeft * 19) / 1000000;
 
-                    totalPrice = winePrice; 
-                }else{
-                    
+                    totalPrice = winePrice;
+                } else {
+
                     xpLeft = Math.abs(xpLvl['35'] - xpLvl[lvl[0]]);
-                    cookPrice = (xpLeft * 75)/1000000;
+                    cookPrice = (xpLeft * 75) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['35']);
-                    winePrice = (xpLeft * 19)/1000000;
+                    winePrice = (xpLeft * 19) / 1000000;
 
-                    totalPrice = winePrice + cookPrice; 
-                    
+                    totalPrice = winePrice + cookPrice;
+
                 }
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
-                
-                if(winePrice > 0){
-                    if(cookPrice > 0){
+
+                if (winePrice > 0) {
+                    if (cookPrice > 0) {
                         r += `\n\nFish (${lvl[0]}-35)  **${cookPrice.toFixed(2)} M** `;
                         r += `\n\nWines (35-${lvl[1]})  **${winePrice.toFixed(2)} M** `;
-                    }else{
+                    } else {
                         r += `\n\nWines (${lvl[0]}-${lvl[1]})  **${winePrice.toFixed(2)} M** `;
                     }
                 }
@@ -1070,16 +1069,16 @@ function cookCalc(q,msg){
                 r += `\nFish (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 70){
+        } else {
+            if (lvl[0] >= 70) {
 
-                if(lvl[1] <= 99 & lvl[1] > 70){
-        
+                if (lvl[1] <= 99 & lvl[1] > 70) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 30)/1000000;
-                    
+                    con2Price = (xpLeft * 30) / 1000000;
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 19)/1000000;
+                    winePrice = (xpLeft * 19) / 1000000;
 
                     totalPrice = winePrice;
 
@@ -1087,7 +1086,7 @@ function cookCalc(q,msg){
                     r += `\n\nWines (${lvl[0]}-${lvl[1]})  **${winePrice.toFixed(2)} M** `;
                     r += `\n\nFish (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1098,36 +1097,36 @@ function cookCalc(q,msg){
 
 }
 
-function slayerCalc(q,msg){
+function slayerCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*(PRICES MIGHT VARIES DEPENDING ON COMBAT LEVEL AND GEAR)
     1->50  - 159GP/XP
     50->99 - 89GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Slayer ${lvl[0]}-${lvl[1]} ** \n(Prices might varies depending by combat level and gear)`;
 
-        if (lvl[0] < 50){
+        if (lvl[0] < 50) {
 
-            if(lvl[1] <= 50){
+            if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 159)/1000000;
+                conPrice = (xpLeft * 159) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nBest way (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 50){
+            if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 159)/1000000;
+                conPrice = (xpLeft * 159) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 89)/1000000;
+                con2Price = (xpLeft * 89) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1136,20 +1135,20 @@ function slayerCalc(q,msg){
                 r += `\nBest way (50-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 50){
+        } else {
+            if (lvl[0] >= 50) {
 
-                if(lvl[1] <= 99 & lvl[1] > 50){
-        
+                if (lvl[1] <= 99 & lvl[1] > 50) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 89)/1000000;
-                    
+                    con2Price = (xpLeft * 89) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nBest way (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1160,35 +1159,35 @@ function slayerCalc(q,msg){
 
 }
 
-function fmCalc(q,msg){
+function fmCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->50  - 50GP/XP
     LVL 50->99 - 15GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Firemaking ${lvl[0]}-${lvl[1]} **`;
 
-        if (lvl[0] < 50){
+        if (lvl[0] < 50) {
 
-            if(lvl[1] <= 50){
+            if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 50)/1000000;
+                conPrice = (xpLeft * 50) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nLogs (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 50){
+            if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 50)/1000000;
+                conPrice = (xpLeft * 50) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 16)/1000000;
+                con2Price = (xpLeft * 16) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1197,20 +1196,20 @@ function fmCalc(q,msg){
                 r += `\nwintertodt (50-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 50){
+        } else {
+            if (lvl[0] >= 50) {
 
-                if(lvl[1] <= 99 & lvl[1] > 50){
-        
+                if (lvl[1] <= 99 & lvl[1] > 50) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 16)/1000000;
-                    
+                    con2Price = (xpLeft * 16) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nwintertodt (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1221,35 +1220,35 @@ function fmCalc(q,msg){
 
 }
 
-function craftingCalc(q,msg){
+function craftingCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->54  - 59GP/XP
     LVL 54->99 - 17GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Crafting ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 54){
+        if (lvl[0] < 54) {
 
-            if(lvl[1] <= 54){
+            if (lvl[1] <= 54) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59)/1000000;
+                conPrice = (xpLeft * 59) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nAny type (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 54){
+            if (lvl[1] <= 99 & lvl[1] > 54) {
 
                 xpLeft = Math.abs(xpLvl['54'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59)/1000000;
+                conPrice = (xpLeft * 59) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['54'])
-                con2Price = (xpLeft * 17)/1000000;
+                con2Price = (xpLeft * 17) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1258,20 +1257,20 @@ function craftingCalc(q,msg){
                 r += `\nAny type (54-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 54){
+        } else {
+            if (lvl[0] >= 54) {
 
-                if(lvl[1] <= 99 & lvl[1] > 54){
-        
+                if (lvl[1] <= 99 & lvl[1] > 54) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 17)/1000000;
-                    
+                    con2Price = (xpLeft * 17) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nAny type (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1282,35 +1281,35 @@ function craftingCalc(q,msg){
 
 }
 
-function miningCalc(q,msg){
+function miningCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->72  - 59GP/XP
     LVL 72->99 - 49GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Mining ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 72){
+        if (lvl[0] < 72) {
 
-            if(lvl[1] <= 72){
+            if (lvl[1] <= 72) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59)/1000000;
+                conPrice = (xpLeft * 59) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nIron ore (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 72){
+            if (lvl[1] <= 99 & lvl[1] > 72) {
 
                 xpLeft = Math.abs(xpLvl['72'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59)/1000000;
+                conPrice = (xpLeft * 59) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['72'])
-                con2Price = (xpLeft * 49)/1000000;
+                con2Price = (xpLeft * 49) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1319,20 +1318,20 @@ function miningCalc(q,msg){
                 r += `\nIron ore (72-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 72){
+        } else {
+            if (lvl[0] >= 72) {
 
-                if(lvl[1] <= 99 & lvl[1] > 72){
-        
+                if (lvl[1] <= 99 & lvl[1] > 72) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 49)/1000000;
-                    
+                    con2Price = (xpLeft * 49) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nIron ore (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1343,27 +1342,27 @@ function miningCalc(q,msg){
 
 }
 
-function smithCalc(q,msg){
+function smithCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 50->99 (BF*GOLD BARS*) - 26GP/XP
     LVL 1->99  (BARS) - 41GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Smithing ${lvl[0]}-${lvl[1]} ** `;
 
         //bow
-        if (lvl[0] < 50){
+        if (lvl[0] < 50) {
 
-            if(lvl[1] <= 99 & lvl[1] > 50){
+            if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 41)/1000000;
+                conPrice = (xpLeft * 41) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 26)/1000000;
+                con2Price = (xpLeft * 26) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1372,26 +1371,26 @@ function smithCalc(q,msg){
                 r += `\nBF Gold Bars (50-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 50){
+        } else {
+            if (lvl[0] >= 50) {
 
-                if(lvl[1] <= 99 & lvl[1] > 50){
-        
+                if (lvl[1] <= 99 & lvl[1] > 50) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 26)/1000000;
-                    
+                    con2Price = (xpLeft * 26) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nBF Gold Bars (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
         //dart
         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-        conPrice = (xpLeft * 41)/1000000;
+        conPrice = (xpLeft * 41) / 1000000;
         totalPrice = conPrice;
         r += `\n\nBars (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
 
@@ -1402,12 +1401,12 @@ function smithCalc(q,msg){
 
 }
 
-function fletchingCalc(q,msg){
+function fletchingCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->99 (DARTS) - 13GP/XP
     LVL 50->99 (BOWS) - 20GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
@@ -1415,21 +1414,21 @@ function fletchingCalc(q,msg){
 
         //dart
         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-        conPrice = (xpLeft * 13)/1000000;
+        conPrice = (xpLeft * 13) / 1000000;
         totalPrice = conPrice;
 
         r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
         r += `\n\nDarts (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
         //bow
-        if (lvl[0] < 50){
+        if (lvl[0] < 50) {
 
-            if(lvl[1] <= 99 & lvl[1] > 50){
+            if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 13)/1000000;
+                conPrice = (xpLeft * 13) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 20)/1000000;
+                con2Price = (xpLeft * 20) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1437,19 +1436,19 @@ function fletchingCalc(q,msg){
                 r += `\nBow (50-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 50){
+        } else {
+            if (lvl[0] >= 50) {
 
-                if(lvl[1] <= 99 & lvl[1] > 50){
-        
+                if (lvl[1] <= 99 & lvl[1] > 50) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 20)/1000000;
-                    
+                    con2Price = (xpLeft * 20) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\n\nBow (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1460,35 +1459,35 @@ function fletchingCalc(q,msg){
 
 }
 
-function agilityCalc(q,msg){
+function agilityCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->60  - 90GP/XP
 LVL 60->99 - 70GP/XP
-*/ 
-    try{
+*/
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Agility ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 60){
+        if (lvl[0] < 60) {
 
-            if(lvl[1] <= 60){
+            if (lvl[1] <= 60) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 90)/1000000;
+                conPrice = (xpLeft * 90) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nBest way (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 60){
+            if (lvl[1] <= 99 & lvl[1] > 60) {
 
                 xpLeft = Math.abs(xpLvl['60'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 90)/1000000;
+                conPrice = (xpLeft * 90) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                con2Price = (xpLeft * 70)/1000000;
+                con2Price = (xpLeft * 70) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1497,20 +1496,20 @@ LVL 60->99 - 70GP/XP
                 r += `\nBest way (60-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 60){
+        } else {
+            if (lvl[0] >= 60) {
 
-                if(lvl[1] <= 99 & lvl[1] > 60){
-        
+                if (lvl[1] <= 99 & lvl[1] > 60) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 70)/1000000;
-                    
+                    con2Price = (xpLeft * 70) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nBest way (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1521,35 +1520,35 @@ LVL 60->99 - 70GP/XP
 
 }
 
-function herbCalc(q,msg){
+function herbCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->50  - 26GP/XP
 LVL 50->99 - 19GP/XP
 */
-    try{
+    try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
         r = `**Price Herblore ${lvl[0]}-${lvl[1]} ** `;
 
-        if (lvl[0] < 50){
+        if (lvl[0] < 50) {
 
-            if(lvl[1] <= 50){
+            if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 26)/1000000;
+                conPrice = (xpLeft * 26) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                 r += `\n\nAny potion (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
             }
-            if(lvl[1] <= 99 & lvl[1] > 50){
+            if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 26)/1000000;
+                conPrice = (xpLeft * 26) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 19)/1000000;
+                con2Price = (xpLeft * 19) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1558,20 +1557,20 @@ LVL 50->99 - 19GP/XP
                 r += `\nBest potion possible (50-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
 
-        }else{
-            if (lvl[0] >= 50){
+        } else {
+            if (lvl[0] >= 50) {
 
-                if(lvl[1] <= 99 & lvl[1] > 50){
-        
+                if (lvl[1] <= 99 & lvl[1] > 50) {
+
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 19)/1000000;
-                    
+                    con2Price = (xpLeft * 19) / 1000000;
+
                     totalPrice = con2Price;
 
                     r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
                     r += `\n\nBest potion possible (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
-        
+
             }
         }
 
@@ -1583,45 +1582,45 @@ LVL 50->99 - 19GP/XP
 }
 
 
-function questCalc(q){
+function questCalc(q) {
     var precio = 0;
     var lista, r;
     var notExist = '';
 
-    if(q.trim().split(' ')[1].trim() == 'all'){
-        
+    if (q.trim().split(' ')[1].trim() == 'all') {
+
         r = questCape(quests);
-    }else{
-        this.q = q.substr(3,undefined);
-        
+    } else {
+        this.q = q.substr(3, undefined);
+
         var posicion = this.q.indexOf("'");
 
-        while ( posicion != -1 ) {
+        while (posicion != -1) {
             this.q = this.q.replace("'", '')
             posicion = this.q.indexOf("'");
         }
         posicion = this.q.indexOf(".");
-        
-        while ( posicion != -1 ) {
+
+        while (posicion != -1) {
             this.q = this.q.replace(".", '')
             posicion = this.q.indexOf(".");
         }
 
         lista = this.q.split(',');
 
-        lista.forEach(function(element){
-            if (quests[element.trim()] != undefined){
+        lista.forEach(function (element) {
+            if (quests[element.trim()] != undefined) {
                 precio += quests[element.trim()];
-            }else{
+            } else {
                 notExist += ` **${element.trim()}** |`;
             }
         });
-        
+
         r = `**${precio}m** for all of it.`;
-        if(notExist != ''){
+        if (notExist != '') {
             r += `\n\nThese quests were not found:\n${notExist}`
         }
-        
+
     }
     return r;
     //return this.q+String(quests[this.q]);
@@ -1631,43 +1630,143 @@ function questCalc(q){
 const questCape = (obj, tabSize = 0) => {
     var total = 0;
     for (let k in obj) {
-      const v = obj[k];
-      if (Object.prototype.toString.call(v) === '[object Object]') {
-        console.log(`${k}:`);
-        it(v, tabSize + 1);
-      } else {
-        total += v;
-      }
+        const v = obj[k];
+        if (Object.prototype.toString.call(v) === '[object Object]') {
+            console.log(`${k}:`);
+            it(v, tabSize + 1);
+        } else {
+            total += v;
+        }
     }
     return `**${total}m** for a Quest Cape\n\n(this price is only for quests, the value of skills is not included)`;
 };
 
-function enviarMsg(canal, msg){
+function enviarMsg(canal, msg) {
     //recibe el canal y el mensaje a enviar
 
     canal.send(msg);
 }
 
-const xpLvl = {
-    '1': 0,'2': 83,'3': 174,'4': 276,'5': 388,'6': 512,'7': 650,'8': 801,'9': 969,'10': 1154,
-    '11': 1358,'12': 1584,'13': 1833,'14': 2107,'15': 2411,'16': 2746,'17': 3115,'18': 3523,
-    '19': 3973,'20': 4470,'21': 5018,'22': 5624,'23': 6291,'24': 7028,'25': 7842,'26': 8740,
-    '27': 9730,'28': 10824,'29': 12031,'30': 13363,'31': 14833,'32': 16456,'33': 18247,'34': 20224,
-    '35': 22406,'36': 24815,'37': 27473,'38': 30408,'39': 33648,'40': 37224,'41': 41171,'42': 45529,
-    '43': 50339,'44': 55649,'45': 61512,'46': 67983,'47': 75127,'48': 83014,'49': 91721,'50': 101333,
-    '51': 111945,'52': 123660,'53': 136594,'54': 150872,'55': 166636,'56': 184040,'57': 203254,
-    '58': 224466,'59': 247886,'60': 273742,'61': 302288,'62': 333804,'63': 368599,'64': 407015,
-    '65': 449428,'66': 496254,'67': 547953,'68': 605032,'69': 668051,'70': 737627,'71': 814445,
-    '72': 899257,'73': 992895,'74': 1096278,'75': 1210421,'76': 1336443,'77': 1475581,'78': 1629200,
-    '79': 1798808,'80': 1986068,'81': 2192818,'82': 2421087,'83': 2673114,'84': 2951373,'85': 3258594,
-    '86': 3597792,'87': 3972294,'88': 4385776,'89': 4842295,'90': 5346332,'91': 5902831,'92': 6517253,
-    '93': 7195629,'94': 7944614,'95': 8771558,'96': 9684577,'97': 10692629,'98': 11805606,'99': 13034431
+function repChar(txt, char, rep = '') {
+    this.txt = txt;
+    var posicion = txt.indexOf(`${char}`);
+    while (posicion != -1) {
+        this.txt = this.txt.replace(`${char}`, `${rep}`)
+        posicion = this.txt.indexOf(`${char}`);
+    }
+    return this.txt;
 }
-const quests = {
+
+function capitalize(word) {
+    return word[0].toUpperCase() + word.slice(1);
+}
+
+const xpLvl = {
+    '1': 0,
+    '2': 83,
+    '3': 174,
+    '4': 276,
+    '5': 388,
+    '6': 512,
+    '7': 650,
+    '8': 801,
+    '9': 969,
+    '10': 1154,
+    '11': 1358,
+    '12': 1584,
+    '13': 1833,
+    '14': 2107,
+    '15': 2411,
+    '16': 2746,
+    '17': 3115,
+    '18': 3523,
+    '19': 3973,
+    '20': 4470,
+    '21': 5018,
+    '22': 5624,
+    '23': 6291,
+    '24': 7028,
+    '25': 7842,
+    '26': 8740,
+    '27': 9730,
+    '28': 10824,
+    '29': 12031,
+    '30': 13363,
+    '31': 14833,
+    '32': 16456,
+    '33': 18247,
+    '34': 20224,
+    '35': 22406,
+    '36': 24815,
+    '37': 27473,
+    '38': 30408,
+    '39': 33648,
+    '40': 37224,
+    '41': 41171,
+    '42': 45529,
+    '43': 50339,
+    '44': 55649,
+    '45': 61512,
+    '46': 67983,
+    '47': 75127,
+    '48': 83014,
+    '49': 91721,
+    '50': 101333,
+    '51': 111945,
+    '52': 123660,
+    '53': 136594,
+    '54': 150872,
+    '55': 166636,
+    '56': 184040,
+    '57': 203254,
+    '58': 224466,
+    '59': 247886,
+    '60': 273742,
+    '61': 302288,
+    '62': 333804,
+    '63': 368599,
+    '64': 407015,
+    '65': 449428,
+    '66': 496254,
+    '67': 547953,
+    '68': 605032,
+    '69': 668051,
+    '70': 737627,
+    '71': 814445,
+    '72': 899257,
+    '73': 992895,
+    '74': 1096278,
+    '75': 1210421,
+    '76': 1336443,
+    '77': 1475581,
+    '78': 1629200,
+    '79': 1798808,
+    '80': 1986068,
+    '81': 2192818,
+    '82': 2421087,
+    '83': 2673114,
+    '84': 2951373,
+    '85': 3258594,
+    '86': 3597792,
+    '87': 3972294,
+    '88': 4385776,
+    '89': 4842295,
+    '90': 5346332,
+    '91': 5902831,
+    '92': 6517253,
+    '93': 7195629,
+    '94': 7944614,
+    '95': 8771558,
+    '96': 9684577,
+    '97': 10692629,
+    '98': 11805606,
+    '99': 13034431
+}
+/*const quests = {
     "black knights fortress": 1.5,
     //"cook's assistant": 0.5,
     "cooks assistant": 0.5,
-    "demon slayer":  2,
+    "demon slayer": 2,
     //"doric's quest": 0.5,
     "dorics quest": 0.5,
     "dragon slayer": 4,
@@ -1858,5 +1957,5 @@ const quests = {
     "what lies below": 2.5,
     //"witch's house": 2,
     "witchs house": 2,
-    "zogre flesh eaters": 3.5,
-};
+    "zogre flesh eaters": 3.5
+};*/
