@@ -3,7 +3,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { prefix, token, actividad, tipoActividad } = require('./config.json');
-const { purgeGold } = require('./users.json');
+const { purgeGold, vikingSkill} = require('./users.json');
 const xpLvl = require('./xpLvl.json');
 const questsPurge = require(`./quest${purgeGold}.json`);
 
@@ -19,8 +19,8 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.author.id != client.user.id) {
-        if (message.guild.id === purgeGold) {
-            if(message.guild.id === purgeGold){quests = questsPurge;}
+        if (message.guild.id === purgeGold || message.guild.id === vikingSkill) {
+            quests = require(`./quest${message.guild.id}.json`);
 
             var msg = message.content.toLowerCase().trim().split(' ')[0];
             if (msg === `!server`) {
