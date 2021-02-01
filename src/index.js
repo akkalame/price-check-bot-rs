@@ -38,6 +38,15 @@ client.on('message', message => {
                     case '!melee':
                         q = meleeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
+                    case '!att':
+                        q = meleeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
+                        break;
+                    case '!str':
+                        q = meleeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
+                        break;
+                    case '!def':
+                        q = meleeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
+                        break;
                     case '!range':
                         q = rangeCalc(message.content.trim().split(' ')[1], msg);
                         break;
