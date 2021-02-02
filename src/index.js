@@ -122,10 +122,10 @@ client.login(token);
 function meleeCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*valores referenciales del precio
-    LVL 1->70 SAND CRABS - 19GP/XP
+    LVL 1->70 SAND CRABS - 15GP/XP
 
-    LVL 70->99 SAND CRABS - 12GP/XP 
-    LVL 70->99 NMZ - 10.5GP/XP
+    LVL 70->99 SAND CRABS - 10GP/XP 
+    LVL 70->99 NMZ - 9GP/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -138,7 +138,7 @@ function meleeCalc(q, msg) {
             if (lvl[1] <= 70) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 19) / 1000000;
+                conPrice = (xpLeft * 15) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
@@ -147,10 +147,10 @@ function meleeCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 19) / 1000000;
+                conPrice = (xpLeft * 15) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 10.5) / 1000000;
+                con2Price = (xpLeft * 9) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -159,7 +159,7 @@ function meleeCalc(q, msg) {
                 r += `\nNMZ (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 12) / 1000000;
+                con2Price = (xpLeft * 10) / 1000000;
 
                 r += `\nSand Crabs (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
@@ -170,7 +170,7 @@ function meleeCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 70) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 10.5) / 1000000;
+                    con2Price = (xpLeft * 9) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -178,7 +178,7 @@ function meleeCalc(q, msg) {
                     r += `\n\nNMZ (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 12) / 1000000;
+                    con2Price = (xpLeft * 10) / 1000000;
 
                     r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
@@ -197,10 +197,10 @@ function meleeCalc(q, msg) {
 function rangeCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*valores referenciales del precio
-    LVL 1->70 SAND CRABS - 19GP/XP
+    LVL 1->70 SAND CRABS - 15GP/XP
 
-    LVL 70->99 SAND CRABS - 12GP/XP 
-    LVL 70->99 NMZ - 10.5GP/XP
+    LVL 70->99 SAND CRABS - 10GP/XP 
+    LVL 70->99 NMZ - 9GP/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -213,7 +213,7 @@ function rangeCalc(q, msg) {
             if (lvl[1] <= 70) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 19) / 1000000;
+                conPrice = (xpLeft * 15) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal minimum  **${totalPrice.toFixed(2)} M**`
@@ -222,10 +222,10 @@ function rangeCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 19) / 1000000;
+                conPrice = (xpLeft * 15) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 10.5) / 1000000;
+                con2Price = (xpLeft * 9) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -234,7 +234,7 @@ function rangeCalc(q, msg) {
                 r += `\nNMZ (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 12) / 1000000;
+                con2Price = (xpLeft * 10) / 1000000;
 
                 r += `\nSand Crabs (70-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
             }
@@ -245,7 +245,7 @@ function rangeCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 70) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 10.5) / 1000000;
+                    con2Price = (xpLeft * 9) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -253,7 +253,7 @@ function rangeCalc(q, msg) {
                     r += `\n\nNMZ (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 12) / 1000000;
+                    con2Price = (xpLeft * 10) / 1000000;
 
                     r += `\n\nSand Crabs (${lvl[0]}-${lvl[1]})  **${con2Price.toFixed(2)} M** `;
                 }
@@ -270,16 +270,16 @@ function rangeCalc(q, msg) {
 
 function prayerCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->99 (Gilded altar) - 12GP/XP
-LVL 1-99 With Arceus spell (best ensouled head you can use) 29GP/XP
+    /*LVL 1->99 (Gilded altar) - 10GP/XP
+LVL 1-99 With Arceus spell (best ensouled head you can use) 20GP/XP
 */
     try {
         var gilderPrice, arceusPrice, r;
         var lvl = q.split('-');
         var xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
 
-        gilderPrice = (xpLeft * 12) / 1000000;
-        arceusPrice = (xpLeft * 29) / 1000000;
+        gilderPrice = (xpLeft * 10) / 1000000;
+        arceusPrice = (xpLeft * 20) / 1000000;
 
         r = `**Price Prayer ${lvl[0]}-${lvl[1]} **`;
         r += `\n\nGilder Altar (${lvl[0]}-${lvl[1]})  **${gilderPrice.toFixed(2)} M**`;
@@ -293,16 +293,16 @@ LVL 1-99 With Arceus spell (best ensouled head you can use) 29GP/XP
 
 function magicCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*SPLASHING - 19.5GP/XP
-Hight Alchemy- 21.5GP/XP
+    /*SPLASHING - 16GP/XP
+Hight Alchemy- 18GP/XP
 */
     try {
         var splashPrice, haPrice, r;
         var lvl = q.split('-');
         var xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
 
-        splashPrice = (xpLeft * 19.5) / 1000000;
-        haPrice = (xpLeft * 21.5) / 1000000;
+        splashPrice = (xpLeft * 16) / 1000000;
+        haPrice = (xpLeft * 18) / 1000000;
 
         r = `**Price Magic ${lvl[0]}-${lvl[1]} ** `;
         r += `\n\nSplashing (${lvl[0]}-${lvl[1]})  **${splashPrice.toFixed(2)} M**`;
@@ -1008,7 +1008,7 @@ function cookCalc(q, msg) {
                 //wine
                 if (lvl[0] >= 35) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 19) / 1000000;
+                    winePrice = (xpLeft * 15) / 1000000;
 
                     totalPrice = winePrice;
                 } else {
@@ -1017,7 +1017,7 @@ function cookCalc(q, msg) {
                         cookPrice = (xpLeft * 75) / 1000000;
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['35']);
-                        winePrice = (xpLeft * 19) / 1000000;
+                        winePrice = (xpLeft * 15) / 1000000;
 
                         totalPrice = winePrice + cookPrice;
                     } else {
@@ -1049,7 +1049,7 @@ function cookCalc(q, msg) {
                 //wine
                 if (lvl[0] >= 35) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 19) / 1000000;
+                    winePrice = (xpLeft * 15) / 1000000;
 
                     totalPrice = winePrice;
                 } else {
@@ -1058,7 +1058,7 @@ function cookCalc(q, msg) {
                     cookPrice = (xpLeft * 75) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['35']);
-                    winePrice = (xpLeft * 19) / 1000000;
+                    winePrice = (xpLeft * 15) / 1000000;
 
                     totalPrice = winePrice + cookPrice;
 
@@ -1088,7 +1088,7 @@ function cookCalc(q, msg) {
                     con2Price = (xpLeft * 30) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 19) / 1000000;
+                    winePrice = (xpLeft * 15) / 1000000;
 
                     totalPrice = winePrice;
 
@@ -1558,7 +1558,7 @@ LVL 50->99 - 19GP/XP
                 conPrice = (xpLeft * 26) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 19) / 1000000;
+                con2Price = (xpLeft * 15) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1573,7 +1573,7 @@ LVL 50->99 - 19GP/XP
                 if (lvl[1] <= 99 & lvl[1] > 50) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 19) / 1000000;
+                    con2Price = (xpLeft * 15) / 1000000;
 
                     totalPrice = con2Price;
 
