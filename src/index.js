@@ -316,9 +316,9 @@ Hight Alchemy- 18GP/XP
 
 function wcCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->51  - 75GP/XP
-    LVL 51->70 - 47GP/XP
-    LVL 70->99 - 37GP/XP
+    /*LVL 1->51  - 66GP/XP
+    LVL 51->70 - 44GP/XP
+    LVL 70->99 - 36GP/XP
 */
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
@@ -331,16 +331,16 @@ function wcCalc(q, msg) {
             if (lvl[1] <= 51) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 75) / 1000000;
+                fPrice = (xpLeft * 66) / 1000000;
                 r += `\nBest way  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 70 & lvl[1] > 51) {
 
                 xpLeft = Math.abs(xpLvl['51'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 75) / 1000000;
+                fPrice = (xpLeft * 66) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['51'])
-                lavaPrice = (xpLeft * 47) / 1000000;
+                lavaPrice = (xpLeft * 44) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
@@ -351,13 +351,13 @@ function wcCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['51'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 75) / 1000000;
+                fPrice = (xpLeft * 66) / 1000000;
 
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl['51'])
-                lavaPrice = (xpLeft * 47) / 1000000;
+                lavaPrice = (xpLeft * 44) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                lava2Price = (xpLeft * 37) / 1000000;
+                lava2Price = (xpLeft * 36) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
@@ -374,7 +374,7 @@ function wcCalc(q, msg) {
 
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['51'])
-                    lavaPrice = (xpLeft * 47) / 1000000;
+                    lavaPrice = (xpLeft * 44) / 1000000;
 
                     totalPrice = lavaPrice;
 
@@ -384,10 +384,10 @@ function wcCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 70) {
 
                     xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 47) / 1000000;
+                    lavaPrice = (xpLeft * 44) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                    lava2Price = (xpLeft * 37) / 1000000;
+                    lava2Price = (xpLeft * 36) / 1000000;
 
                     totalPrice = lavaPrice + lava2Price;
 
@@ -403,7 +403,7 @@ function wcCalc(q, msg) {
                     if (lvl[1] <= 99 & lvl[1] > 70) {
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                        lava2Price = (xpLeft * 37) / 1000000;
+                        lava2Price = (xpLeft * 36) / 1000000;
 
                         totalPrice = lava2Price;
 
@@ -425,9 +425,9 @@ function wcCalc(q, msg) {
 
 function thievingCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 01->55 - 89GP/XP
-    LVL 55->80 - 59GP/XP
-    LVL 80->99 - 39GP/XP
+    /*LVL 01->55 - 77GP/XP
+    LVL 55->80 - 48GP/XP
+    LVL 80->99 - 38.5GP/XP
 */
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
@@ -440,16 +440,16 @@ function thievingCalc(q, msg) {
             if (lvl[1] <= 55) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89) / 1000000;
+                fPrice = (xpLeft * 77) / 1000000;
                 r += `\nAny way  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 80 & lvl[1] > 55) {
 
                 xpLeft = Math.abs(xpLvl['55'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89) / 1000000;
+                fPrice = (xpLeft * 77) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['55'])
-                lavaPrice = (xpLeft * 59) / 1000000;
+                lavaPrice = (xpLeft * 48) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
@@ -460,13 +460,13 @@ function thievingCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 80) {
 
                 xpLeft = Math.abs(xpLvl['55'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89) / 1000000;
+                fPrice = (xpLeft * 77) / 1000000;
 
                 xpLeft = Math.abs(xpLvl['80'] - xpLvl['55'])
-                lavaPrice = (xpLeft * 59) / 1000000;
+                lavaPrice = (xpLeft * 48) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
-                lava2Price = (xpLeft * 39) / 1000000;
+                lava2Price = (xpLeft * 38.5) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
@@ -483,7 +483,7 @@ function thievingCalc(q, msg) {
 
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['55'])
-                    lavaPrice = (xpLeft * 59) / 1000000;
+                    lavaPrice = (xpLeft * 48) / 1000000;
 
                     totalPrice = lavaPrice;
 
@@ -493,10 +493,10 @@ function thievingCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 80) {
 
                     xpLeft = Math.abs(xpLvl['80'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 59) / 1000000;
+                    lavaPrice = (xpLeft * 48) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
-                    lava2Price = (xpLeft * 39) / 1000000;
+                    lava2Price = (xpLeft * 38.5) / 1000000;
 
                     totalPrice = lavaPrice + lava2Price;
 
@@ -512,7 +512,7 @@ function thievingCalc(q, msg) {
                     if (lvl[1] <= 99 & lvl[1] > 80) {
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
-                        lava2Price = (xpLeft * 39) / 1000000;
+                        lava2Price = (xpLeft * 38.5) / 1000000;
 
                         totalPrice = lava2Price;
 
@@ -534,9 +534,9 @@ function thievingCalc(q, msg) {
 
 function fishCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->50  - 59GP/XP
-    LVL 50->70 - 39GP/XP
-    LVL 70->99 - 29GP/XP
+    /*LVL 1->50  - 55GP/XP
+    LVL 50->70 - 38.5GP/XP
+    LVL 70->99 - 22GP/XP
 */
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
@@ -549,16 +549,16 @@ function fishCalc(q, msg) {
             if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 59) / 1000000;
+                fPrice = (xpLeft * 55) / 1000000;
                 r += `\nBest way  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 70 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 59) / 1000000;
+                fPrice = (xpLeft * 55) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                lavaPrice = (xpLeft * 39) / 1000000;
+                lavaPrice = (xpLeft * 38.5) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
@@ -569,13 +569,13 @@ function fishCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 70) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 59) / 1000000;
+                fPrice = (xpLeft * 55) / 1000000;
 
                 xpLeft = Math.abs(xpLvl['70'] - xpLvl['50'])
-                lavaPrice = (xpLeft * 39) / 1000000;
+                lavaPrice = (xpLeft * 38.5) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                lava2Price = (xpLeft * 29) / 1000000;
+                lava2Price = (xpLeft * 22) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
@@ -592,7 +592,7 @@ function fishCalc(q, msg) {
 
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                    lavaPrice = (xpLeft * 39) / 1000000;
+                    lavaPrice = (xpLeft * 38.5) / 1000000;
 
                     totalPrice = lavaPrice;
 
@@ -602,10 +602,10 @@ function fishCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 70) {
 
                     xpLeft = Math.abs(xpLvl['70'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 39) / 1000000;
+                    lavaPrice = (xpLeft * 38.5) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                    lava2Price = (xpLeft * 29) / 1000000;
+                    lava2Price = (xpLeft * 22) / 1000000;
 
                     totalPrice = lavaPrice + lava2Price;
 
@@ -621,7 +621,7 @@ function fishCalc(q, msg) {
                     if (lvl[1] <= 99 & lvl[1] > 70) {
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                        lava2Price = (xpLeft * 29) / 1000000;
+                        lava2Price = (xpLeft * 22) / 1000000;
 
                         totalPrice = lava2Price;
 
@@ -643,9 +643,9 @@ function fishCalc(q, msg) {
 
 function hunterCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->30  - 89GP/XP
-    LVL 30->60 - 79GP/XP
-    LVL 60->99 - 50GP/XP
+    /*LVL 1->30  - 77GP/XP
+    LVL 30->60 - 66GP/XP
+    LVL 60->99 - 44GP/XP
 */
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
@@ -658,16 +658,16 @@ function hunterCalc(q, msg) {
             if (lvl[1] <= 30) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89) / 1000000;
+                fPrice = (xpLeft * 77) / 1000000;
                 r += `\nBirds  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 60 & lvl[1] > 30) {
 
                 xpLeft = Math.abs(xpLvl['30'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89) / 1000000;
+                fPrice = (xpLeft * 77) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['30'])
-                lavaPrice = (xpLeft * 79) / 1000000;
+                lavaPrice = (xpLeft * 66) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
@@ -678,13 +678,13 @@ function hunterCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 60) {
 
                 xpLeft = Math.abs(xpLvl['30'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 89) / 1000000;
+                fPrice = (xpLeft * 77) / 1000000;
 
                 xpLeft = Math.abs(xpLvl['60'] - xpLvl['30'])
-                lavaPrice = (xpLeft * 79) / 1000000;
+                lavaPrice = (xpLeft * 66) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                lava2Price = (xpLeft * 50) / 1000000;
+                lava2Price = (xpLeft * 44) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
@@ -701,7 +701,7 @@ function hunterCalc(q, msg) {
 
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['30'])
-                    lavaPrice = (xpLeft * 79) / 1000000;
+                    lavaPrice = (xpLeft * 66) / 1000000;
 
                     totalPrice = lavaPrice;
 
@@ -711,10 +711,10 @@ function hunterCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 60) {
 
                     xpLeft = Math.abs(xpLvl['60'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 79) / 1000000;
+                    lavaPrice = (xpLeft * 66) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                    lava2Price = (xpLeft * 50) / 1000000;
+                    lava2Price = (xpLeft * 44) / 1000000;
 
                     totalPrice = lavaPrice + lava2Price;
 
@@ -730,7 +730,7 @@ function hunterCalc(q, msg) {
                     if (lvl[1] <= 99 & lvl[1] > 60) {
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                        lava2Price = (xpLeft * 50) / 1000000;
+                        lava2Price = (xpLeft * 44) / 1000000;
 
                         totalPrice = lava2Price;
 
@@ -752,9 +752,9 @@ function hunterCalc(q, msg) {
 
 function runecraftingCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->23 - 160GP/XP
-    LVL 23->60 (LAVAS *LUNAR DIPLO REQ*) - 150GP/XP
-    LVL 60->99 (LAVAS *LUNAR DIPLO REQ*) - 90GP/XP
+    /*LVL 1->23 - 140GP/XP
+    LVL 23->60 (LAVAS *LUNAR DIPLO REQ*) - 132GP/XP
+    LVL 60->99 (LAVAS *LUNAR DIPLO REQ*) - 80GP/XP
     LVL 1->50 (ZMI)  - 140GP/XP
     LVL 50->99 (ZMI) - 100GP/XP
 */
@@ -769,16 +769,16 @@ function runecraftingCalc(q, msg) {
             if (lvl[1] <= 23) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 160) / 1000000;
+                fPrice = (xpLeft * 140) / 1000000;
                 r += `\nRegular way  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 60 & lvl[1] > 23) {
 
                 xpLeft = Math.abs(xpLvl['23'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 160) / 1000000;
+                fPrice = (xpLeft * 140) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['23'])
-                lavaPrice = (xpLeft * 150) / 1000000;
+                lavaPrice = (xpLeft * 132) / 1000000;
 
                 totalPrice = fPrice + lavaPrice;
 
@@ -789,13 +789,13 @@ function runecraftingCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 60) {
 
                 xpLeft = Math.abs(xpLvl['23'] - xpLvl[lvl[0]])
-                fPrice = (xpLeft * 160) / 1000000;
+                fPrice = (xpLeft * 140) / 1000000;
 
                 xpLeft = Math.abs(xpLvl['60'] - xpLvl['23'])
-                lavaPrice = (xpLeft * 150) / 1000000;
+                lavaPrice = (xpLeft * 132) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                lava2Price = (xpLeft * 90) / 1000000;
+                lava2Price = (xpLeft * 80) / 1000000;
 
                 totalPrice = fPrice + lavaPrice + lava2Price;
 
@@ -812,7 +812,7 @@ function runecraftingCalc(q, msg) {
 
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['23'])
-                    lavaPrice = (xpLeft * 150) / 1000000;
+                    lavaPrice = (xpLeft * 132) / 1000000;
 
                     totalPrice = lavaPrice;
 
@@ -822,10 +822,10 @@ function runecraftingCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 60) {
 
                     xpLeft = Math.abs(xpLvl['60'] - xpLvl[lvl[0]])
-                    lavaPrice = (xpLeft * 150) / 1000000;
+                    lavaPrice = (xpLeft * 132) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                    lava2Price = (xpLeft * 90) / 1000000;
+                    lava2Price = (xpLeft * 80) / 1000000;
 
                     totalPrice = lavaPrice + lava2Price;
 
@@ -841,7 +841,7 @@ function runecraftingCalc(q, msg) {
                     if (lvl[1] <= 99 & lvl[1] > 60) {
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                        lava2Price = (xpLeft * 90) / 1000000;
+                        lava2Price = (xpLeft * 80) / 1000000;
 
                         totalPrice = lava2Price;
 
@@ -863,7 +863,7 @@ function runecraftingCalc(q, msg) {
 
 function constructionCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->52  - 49GP/XP
+    /*LVL 1->52  - 44GP/XP
     LVL 52->99 - 16GP/XP
 */
     try {
@@ -877,7 +877,7 @@ function constructionCalc(q, msg) {
             if (lvl[1] <= 52) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 49) / 1000000;
+                conPrice = (xpLeft * 44) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -886,7 +886,7 @@ function constructionCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 52) {
 
                 xpLeft = Math.abs(xpLvl['52'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 49) / 1000000;
+                conPrice = (xpLeft * 44) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['52'])
                 con2Price = (xpLeft * 16) / 1000000;
@@ -924,8 +924,8 @@ function constructionCalc(q, msg) {
 
 function farmCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->34  - 79gp/XP  
-    LVL 34->99 - 45gp/XP
+    /*LVL 1->34  - 66gp/XP  
+    LVL 34->99 - 38.5gp/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -938,7 +938,7 @@ function farmCalc(q, msg) {
             if (lvl[1] <= 34) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 79) / 1000000;
+                conPrice = (xpLeft * 66) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -947,10 +947,10 @@ function farmCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 34) {
 
                 xpLeft = Math.abs(xpLvl['34'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 79) / 1000000;
+                conPrice = (xpLeft * 66) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['34'])
-                con2Price = (xpLeft * 45) / 1000000;
+                con2Price = (xpLeft * 38.5) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -965,7 +965,7 @@ function farmCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 34) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 45) / 1000000;
+                    con2Price = (xpLeft * 38.5) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -983,12 +983,11 @@ function farmCalc(q, msg) {
 
 }
 
-
 function cookCalc(q, msg) {
     //$deberia llegar algo como 1-99
     /*LVL 1->70 - 75GP/XP
-    LVL 70->99 (FISH) - 30GP/XP
-    LVL 35->99 (WINNES) - 19GP/XP
+    LVL 70->99 (FISH) - 18GP/XP
+    LVL 35->99 (WINNES) - 15GP/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -1008,7 +1007,7 @@ function cookCalc(q, msg) {
                 //wine
                 if (lvl[0] >= 35) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 15) / 1000000;
+                    winePrice = (xpLeft * 16.5) / 1000000;
 
                     totalPrice = winePrice;
                 } else {
@@ -1017,7 +1016,7 @@ function cookCalc(q, msg) {
                         cookPrice = (xpLeft * 75) / 1000000;
 
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['35']);
-                        winePrice = (xpLeft * 15) / 1000000;
+                        winePrice = (xpLeft * 16.5) / 1000000;
 
                         totalPrice = winePrice + cookPrice;
                     } else {
@@ -1044,12 +1043,12 @@ function cookCalc(q, msg) {
                 conPrice = (xpLeft * 75) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
-                con2Price = (xpLeft * 30) / 1000000;
+                con2Price = (xpLeft * 18) / 1000000;
 
                 //wine
                 if (lvl[0] >= 35) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 15) / 1000000;
+                    winePrice = (xpLeft * 16.5) / 1000000;
 
                     totalPrice = winePrice;
                 } else {
@@ -1058,7 +1057,7 @@ function cookCalc(q, msg) {
                     cookPrice = (xpLeft * 75) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['35']);
-                    winePrice = (xpLeft * 15) / 1000000;
+                    winePrice = (xpLeft * 16.5) / 1000000;
 
                     totalPrice = winePrice + cookPrice;
 
@@ -1085,10 +1084,10 @@ function cookCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 70) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 30) / 1000000;
+                    con2Price = (xpLeft * 18) / 1000000;
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
-                    winePrice = (xpLeft * 15) / 1000000;
+                    winePrice = (xpLeft * 16.5) / 1000000;
 
                     totalPrice = winePrice;
 
@@ -1124,7 +1123,7 @@ function slayerCalc(q, msg) {
             if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 159) / 1000000;
+                conPrice = (xpLeft * 132) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1133,10 +1132,10 @@ function slayerCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 159) / 1000000;
+                conPrice = (xpLeft * 132) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 89) / 1000000;
+                con2Price = (xpLeft * 82.5) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1151,7 +1150,7 @@ function slayerCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 50) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 89) / 1000000;
+                    con2Price = (xpLeft * 82.5) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -1171,7 +1170,7 @@ function slayerCalc(q, msg) {
 
 function fmCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->50  - 50GP/XP
+    /*LVL 1->50  - 49.5GP/XP
     LVL 50->99 - 15GP/XP
 */
     try {
@@ -1185,7 +1184,7 @@ function fmCalc(q, msg) {
             if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 50) / 1000000;
+                conPrice = (xpLeft * 49.5) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1194,7 +1193,7 @@ function fmCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 50) / 1000000;
+                conPrice = (xpLeft * 49.5) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
                 con2Price = (xpLeft * 16) / 1000000;
@@ -1232,7 +1231,7 @@ function fmCalc(q, msg) {
 
 function craftingCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->54  - 59GP/XP
+    /*LVL 1->54  - 49.5GP/XP
     LVL 54->99 - 17GP/XP
 */
     try {
@@ -1246,7 +1245,7 @@ function craftingCalc(q, msg) {
             if (lvl[1] <= 54) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59) / 1000000;
+                conPrice = (xpLeft * 49.5) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1255,10 +1254,10 @@ function craftingCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 54) {
 
                 xpLeft = Math.abs(xpLvl['54'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59) / 1000000;
+                conPrice = (xpLeft * 49.5) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['54'])
-                con2Price = (xpLeft * 17) / 1000000;
+                con2Price = (xpLeft * 14.8) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1273,7 +1272,7 @@ function craftingCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 54) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 17) / 1000000;
+                    con2Price = (xpLeft * 14.8) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -1293,8 +1292,8 @@ function craftingCalc(q, msg) {
 
 function miningCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->72  - 59GP/XP
-    LVL 72->99 - 49GP/XP
+    /*LVL 1->72  - 55GP/XP
+    LVL 72->99 - 44GP/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -1307,7 +1306,7 @@ function miningCalc(q, msg) {
             if (lvl[1] <= 72) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59) / 1000000;
+                conPrice = (xpLeft * 55) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1316,10 +1315,10 @@ function miningCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 72) {
 
                 xpLeft = Math.abs(xpLvl['72'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 59) / 1000000;
+                conPrice = (xpLeft * 55) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['72'])
-                con2Price = (xpLeft * 49) / 1000000;
+                con2Price = (xpLeft * 44) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1334,7 +1333,7 @@ function miningCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 72) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 49) / 1000000;
+                    con2Price = (xpLeft * 44) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -1354,7 +1353,7 @@ function miningCalc(q, msg) {
 
 function smithCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 50->99 (BF*GOLD BARS*) - 26GP/XP
+    /*LVL 50->99 (BF*GOLD BARS*) - 22GP/XP
     LVL 1->99  (BARS) - 41GP/XP
 */
     try {
@@ -1369,10 +1368,10 @@ function smithCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 41) / 1000000;
+                conPrice = (xpLeft * 38.5) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 26) / 1000000;
+                con2Price = (xpLeft * 22) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1387,7 +1386,7 @@ function smithCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 50) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 26) / 1000000;
+                    con2Price = (xpLeft * 22) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -1400,7 +1399,7 @@ function smithCalc(q, msg) {
 
         //dart
         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-        conPrice = (xpLeft * 41) / 1000000;
+        conPrice = (xpLeft * 38.5) / 1000000;
         totalPrice = conPrice;
         r += `\n\nBars (${lvl[0]}-${lvl[1]})  **${conPrice.toFixed(2)} M** `;
 
@@ -1413,8 +1412,8 @@ function smithCalc(q, msg) {
 
 function fletchingCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->99 (DARTS) - 13GP/XP
-    LVL 50->99 (BOWS) - 20GP/XP
+    /*LVL 1->99 (DARTS) - 11GP/XP
+    LVL 50->99 (BOWS) - 16.5GP/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -1424,7 +1423,7 @@ function fletchingCalc(q, msg) {
 
         //dart
         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-        conPrice = (xpLeft * 13) / 1000000;
+        conPrice = (xpLeft * 11) / 1000000;
         totalPrice = conPrice;
 
         r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1435,10 +1434,10 @@ function fletchingCalc(q, msg) {
             if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 13) / 1000000;
+                conPrice = (xpLeft * 11) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 20) / 1000000;
+                con2Price = (xpLeft * 16.5) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1452,7 +1451,7 @@ function fletchingCalc(q, msg) {
                 if (lvl[1] <= 99 & lvl[1] > 50) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 20) / 1000000;
+                    con2Price = (xpLeft * 16.5) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -1471,8 +1470,8 @@ function fletchingCalc(q, msg) {
 
 function agilityCalc(q, msg) {
     //$deberia llegar algo como 1-99
-    /*LVL 1->60  - 90GP/XP
-LVL 60->99 - 70GP/XP
+    /*LVL 1->60  - 71.5GP/XP
+LVL 60->99 - 66GP/XP
 */
     try {
         var conPrice, con2Price, xpLeft, totalPrice, r;
@@ -1485,7 +1484,7 @@ LVL 60->99 - 70GP/XP
             if (lvl[1] <= 60) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 90) / 1000000;
+                conPrice = (xpLeft * 71.5) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1494,10 +1493,10 @@ LVL 60->99 - 70GP/XP
             if (lvl[1] <= 99 & lvl[1] > 60) {
 
                 xpLeft = Math.abs(xpLvl['60'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 90) / 1000000;
+                conPrice = (xpLeft * 71.5) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
-                con2Price = (xpLeft * 70) / 1000000;
+                con2Price = (xpLeft * 66) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1512,7 +1511,7 @@ LVL 60->99 - 70GP/XP
                 if (lvl[1] <= 99 & lvl[1] > 60) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 70) / 1000000;
+                    con2Price = (xpLeft * 66) / 1000000;
 
                     totalPrice = con2Price;
 
@@ -1546,7 +1545,7 @@ LVL 50->99 - 19GP/XP
             if (lvl[1] <= 50) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 26) / 1000000;
+                conPrice = (xpLeft * 22) / 1000000;
                 totalPrice = conPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M**`
@@ -1555,10 +1554,10 @@ LVL 50->99 - 19GP/XP
             if (lvl[1] <= 99 & lvl[1] > 50) {
 
                 xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
-                conPrice = (xpLeft * 26) / 1000000;
+                conPrice = (xpLeft * 22) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
-                con2Price = (xpLeft * 15) / 1000000;
+                con2Price = (xpLeft * 16.5) / 1000000;
 
                 totalPrice = conPrice + con2Price;
 
@@ -1573,7 +1572,7 @@ LVL 50->99 - 19GP/XP
                 if (lvl[1] <= 99 & lvl[1] > 50) {
 
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
-                    con2Price = (xpLeft * 15) / 1000000;
+                    con2Price = (xpLeft * 16.5) / 1000000;
 
                     totalPrice = con2Price;
 
