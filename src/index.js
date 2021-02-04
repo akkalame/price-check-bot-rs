@@ -511,7 +511,7 @@ function thievingCalc(q, msg) {
 
                     if (lvl[1] <= 99 & lvl[1] > 80) {
 
-                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['80'])
+                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                         lava2Price = (xpLeft * 38.5) / 1000000;
 
                         totalPrice = lava2Price;
