@@ -3,7 +3,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { prefix, token, actividad, tipoActividad } = require('./config.json');
-const { purgeGold, vikingSkill} = require('./users.json');
+const { purgeGold} = require('./users.json');
 const xpLvl = require('./xpLvl.json');
 const questsPurge = require(`./quest${purgeGold}.json`);
 
