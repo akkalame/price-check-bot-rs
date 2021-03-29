@@ -15,7 +15,7 @@ console.log(msg);
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix))} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 70) {
 
@@ -91,7 +91,7 @@ exports.rangeCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix))} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 70) {
 
@@ -1495,5 +1495,6 @@ LVL 50->99 - 19GP/XP
 }
 
 function capitalize(word) {
-    return word[0].toUpperCase() + word.slice(1);
+    var r = word.split("");
+    return r[0].toUpperCase() + r.slice(1);
 }
