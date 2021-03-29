@@ -48,61 +48,61 @@ client.on('message', message => {
                         q = sp.meleeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!range':
-                        q = sp.rangeCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.rangeCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!prayer':
-                        q = sp.prayerCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.prayerCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!magic':
-                        q = sp.magicCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.magicCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!runecrafting':
-                        q = sp.runecraftingCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.runecraftingCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!construction':
-                        q = sp.constructionCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.constructionCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!agility':
-                        q = sp.agilityCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.agilityCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!herblore':
-                        q = sp.herbCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.herbCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!thieving':
-                        q = sp.thievingCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.thievingCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!crafting':
-                        q = sp.craftingCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.craftingCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!fletching':
-                        q = sp.fletchingCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.fletchingCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!slayer':
-                        q = sp.slayerCalc(message.content.trim().split(' ')[1]), msg;
+                        q = sp.slayerCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!hunter':
-                        q = sp.hunterCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.hunterCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!mining':
-                        q = sp.miningCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.miningCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!smithing':
-                        q = sp.smithCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.smithCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!fishing':
-                        q = sp.fishCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.fishCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!cooking':
-                        q = sp.cookCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.cookCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!firemaking':
-                        q = sp.fmCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.fmCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!woodcutting':
-                        q = sp.wcCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.wcCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
                     case '!farming':
-                        q = sp.farmCalc(message.content.trim().split(' ')[1], msg);
+                        q = sp.farmCalc(message.content.trim().split(' ')[1], repChar(msg, prefix));
                         break;
 
                     default:
