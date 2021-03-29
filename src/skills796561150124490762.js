@@ -1495,6 +1495,5 @@ LVL 50->99 - 19GP/XP
 }
 
 function capitalize(word) {
-    var r = word.split("");
-    return r[0].toUpperCase() + r.slice(1);
+    return word.toUpperCase() + word.slice(1);
 }
