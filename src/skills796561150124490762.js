@@ -15,7 +15,7 @@ console.log(msg);
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 70) {
 
