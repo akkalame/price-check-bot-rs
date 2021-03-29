@@ -681,7 +681,7 @@ exports.runecraftingCalc = function(q, msg) {
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                 lavaPrice = (xpLeft * 120) / 1000000;
                 zmiPrice = (xpLeft * 120) / 1000000;
-                arceusPricePrice = (xpLeft * 180) / 1000000;
+                arceusPrice = (xpLeft * 180) / 1000000;
                 totalPrice = lavaPrice;
 
                 r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`
@@ -695,17 +695,17 @@ exports.runecraftingCalc = function(q, msg) {
                 
                 lavaPrice = (xpLeft * 120) / 1000000;
                 zmiPrice = (xpLeft * 120) / 1000000;
-                arceusPricePrice = (xpLeft * 180) / 1000000;
+                arceusPrice = (xpLeft * 180) / 1000000;
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
                 
                 lava2Price = (xpLeft * 75) / 1000000;
                 zmi2Price = (xpLeft * 80) / 1000000;
-                arceus2PricePrice = (xpLeft * 140) / 1000000;
+                arceus2Price = (xpLeft * 140) / 1000000;
 
                 totalPrice = lavaPrice + lava2Price;
 
-                r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`
+                r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`;
                 r += `\n\nLava rune (${lvl[0]}-50)  **${lavaPrice.toFixed(2)} M** `;
                 r += `\nLava rune (50-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
                 r += `\n\nZMI (${lvl[0]}-50)  **${zmiPrice.toFixed(2)} M** `;
@@ -723,11 +723,11 @@ exports.runecraftingCalc = function(q, msg) {
                     
                     lava2Price = (xpLeft * 75) / 1000000;
                     zmi2Price = (xpLeft * 80) / 1000000;
-                    arceus2PricePrice = (xpLeft * 140) / 1000000;
+                    arceus2Price = (xpLeft * 140) / 1000000;
 
                     totalPrice = lava2Price;
 
-                    r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`
+                    r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`;
                     r += `\n\nLava rune (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
                     r += `\nZMI (${lvl[0]}-${lvl[1]})  **${zmi2Price.toFixed(2)} M** `;
                     r += `\nArceuus Library  (${lvl[0]}-${lvl[1]})  **${arceus2Price.toFixed(2)} M** `;
