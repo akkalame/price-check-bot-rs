@@ -148,6 +148,7 @@ exports.rangeCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -161,16 +162,17 @@ LVL 1-99 With Arceus spell (best ensouled head you can use) 20GP/XP
     try {
         var gilderPrice, arceusPrice, r;
         var lvl = q.split('-');
-        var xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
+        var xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]]);
 
         gilderPrice = (xpLeft * 10) / 1000000;
         arceusPrice = (xpLeft * 20) / 1000000;
 
         r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
         r += `\n\nGilder Altar (${lvl[0]}-${lvl[1]})  **${gilderPrice.toFixed(2)} M**`;
-        r += ` \nArceus Spell (${lvl[0]}-${lvl[1]})  **${arceusPrice.toFixed(2)} M**`
+        r += ` \nArceus Spell (${lvl[0]}-${lvl[1]})  **${arceusPrice.toFixed(2)} M**`;
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -194,6 +196,7 @@ Hight Alchemy- 18GP/XP
         r += `\nHight Alchemy (${lvl[0]}-${lvl[1]}) **${haPrice.toFixed(2)} M**`
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -303,6 +306,7 @@ exports.wcCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -412,6 +416,7 @@ exports.thievingCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -521,6 +526,7 @@ exports.fishCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -630,6 +636,7 @@ exports.hunterCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -741,6 +748,7 @@ exports.runecraftingCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -802,6 +810,7 @@ exports.constructionCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -863,6 +872,7 @@ exports.farmCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -986,6 +996,7 @@ exports.cookCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1048,6 +1059,7 @@ exports.slayerCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1109,6 +1121,7 @@ exports.fmCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1170,6 +1183,7 @@ exports.craftingCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1231,6 +1245,7 @@ exports.miningCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1290,6 +1305,7 @@ exports.smithCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1348,6 +1364,7 @@ exports.fletchingCalc = function(q, msg) {
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1409,6 +1426,7 @@ LVL 60->99 - 66GP/XP
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
@@ -1470,6 +1488,7 @@ LVL 50->99 - 19GP/XP
 
         return r;
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
