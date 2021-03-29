@@ -91,7 +91,7 @@ exports.rangeCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 70) {
 
@@ -167,7 +167,7 @@ LVL 1-99 With Arceus spell (best ensouled head you can use) 20GP/XP
         gilderPrice = (xpLeft * 10) / 1000000;
         arceusPrice = (xpLeft * 20) / 1000000;
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
         r += `\n\nGilder Altar (${lvl[0]}-${lvl[1]})  **${gilderPrice.toFixed(2)} M**`;
         r += ` \nArceus Spell (${lvl[0]}-${lvl[1]})  **${arceusPrice.toFixed(2)} M**`;
         return r;
@@ -191,7 +191,7 @@ Hight Alchemy- 18GP/XP
         splashPrice = (xpLeft * 16) / 1000000;
         haPrice = (xpLeft * 18) / 1000000;
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
         r += `\n\nSplashing (${lvl[0]}-${lvl[1]})  **${splashPrice.toFixed(2)} M**`;
         r += `\nHight Alchemy (${lvl[0]}-${lvl[1]}) **${haPrice.toFixed(2)} M**`
         return r;
@@ -211,7 +211,7 @@ exports.wcCalc = function(q, msg) {
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])}  ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)}  ${lvl[0]}-${lvl[1]} **`;
 
         //lava
         if (lvl[0] < 51) {
@@ -321,7 +321,7 @@ exports.thievingCalc = function(q, msg) {
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
 
         //lava
         if (lvl[0] < 55) {
@@ -431,7 +431,7 @@ exports.fishCalc = function(q, msg) {
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
 
         //lava
         if (lvl[0] < 50) {
@@ -541,7 +541,7 @@ exports.hunterCalc = function(q, msg) {
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
 
         //lava
         if (lvl[0] < 30) {
@@ -653,7 +653,7 @@ exports.runecraftingCalc = function(q, msg) {
     try {
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
 
         //lava
         if (lvl[0] < 23) {
@@ -763,7 +763,7 @@ exports.constructionCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 52) {
 
@@ -825,7 +825,7 @@ exports.farmCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])}  ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)}  ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 34) {
 
@@ -890,7 +890,7 @@ exports.cookCalc = function(q, msg) {
         var cookPrice = 0;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 70) {
 
@@ -1012,7 +1012,7 @@ exports.slayerCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** \n(Prices might varies depending by combat level and gear)`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** \n(Prices might varies depending by combat level and gear)`;
 
         if (lvl[0] < 50) {
 
@@ -1074,7 +1074,7 @@ exports.fmCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} **`;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
 
         if (lvl[0] < 50) {
 
@@ -1136,7 +1136,7 @@ exports.craftingCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 54) {
 
@@ -1198,7 +1198,7 @@ exports.miningCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 72) {
 
@@ -1260,7 +1260,7 @@ exports.smithCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         //bow
         if (lvl[0] < 50) {
@@ -1320,7 +1320,7 @@ exports.fletchingCalc = function(q, msg) {
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         //dart
         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
@@ -1379,7 +1379,7 @@ LVL 60->99 - 66GP/XP
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 60) {
 
@@ -1441,7 +1441,7 @@ LVL 50->99 - 19GP/XP
         var conPrice, con2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
 
-        r = `**Price ${capitalize(msg.trim().split(prefix)[0])} ${lvl[0]}-${lvl[1]} ** `;
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
 
         if (lvl[0] < 50) {
 
