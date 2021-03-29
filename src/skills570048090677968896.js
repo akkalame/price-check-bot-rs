@@ -669,6 +669,75 @@ exports.runecraftingCalc = function(q, msg) {
     LVL 50->99 (ZMI) - 100GP/XP
 */
     try {
+        var lavaPrice, zmiPrice, arceusPrice, lava2Price, zmi2Price, arceus2Price, xpLeft, totalPrice, r;
+        var lvl = q.split('-');
+
+        r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} ** `;
+
+        if (lvl[0] < 50) {
+
+            if (lvl[1] <= 50) {
+
+                xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
+                lavaPrice = (xpLeft * 120) / 1000000;
+                zmiPrice = (xpLeft * 120) / 1000000;
+                arceusPricePrice = (xpLeft * 180) / 1000000;
+                totalPrice = lavaPrice;
+
+                r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`
+                r += `\n\nLava rune (${lvl[0]}-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
+                r += `\nZMI (${lvl[0]}-${lvl[1]})  **${zmiPricePrice.toFixed(2)} M** `;
+                r += `\nArceuus Library  (${lvl[0]}-${lvl[1]})  **${arceusPrice.toFixed(2)} M** `;
+            }
+            if (lvl[1] <= 99 & lvl[1] > 50) {
+
+                xpLeft = Math.abs(xpLvl['50'] - xpLvl[lvl[0]])
+                
+                lavaPrice = (xpLeft * 120) / 1000000;
+                zmiPrice = (xpLeft * 120) / 1000000;
+                arceusPricePrice = (xpLeft * 180) / 1000000;
+
+                xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
+                
+                lava2Price = (xpLeft * 75) / 1000000;
+                zmi2Price = (xpLeft * 80) / 1000000;
+                arceus2PricePrice = (xpLeft * 140) / 1000000;
+
+                totalPrice = lavaPrice + lava2Price;
+
+                r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`
+                r += `\n\nLava rune (${lvl[0]}-50)  **${lavaPrice.toFixed(2)} M** `;
+                r += `\nLava rune (50-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
+                r += `\n\nZMI (${lvl[0]}-50)  **${zmiPrice.toFixed(2)} M** `;
+                r += `\nZMI (50-${lvl[1]})  **${zmi2Price.toFixed(2)} M** `;
+                r += `\n\nArceuus Library (${lvl[0]}-50)  **${arceusPrice.toFixed(2)} M** `;
+                r += `\nArceuus Library (50-${lvl[1]})  **${arceus2Price.toFixed(2)} M** `;
+            }
+
+        } else {
+            if (lvl[0] >= 50) {
+
+                if (lvl[1] <= 99 & lvl[1] > 50) {
+
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
+                    
+                    lava2Price = (xpLeft * 75) / 1000000;
+                    zmi2Price = (xpLeft * 80) / 1000000;
+                    arceus2PricePrice = (xpLeft * 140) / 1000000;
+
+                    totalPrice = lava2Price;
+
+                    r += `\nTotal Minimoun  **${totalPrice.toFixed(2)} M**`
+                    r += `\n\nLava rune (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
+                    r += `\nZMI (${lvl[0]}-${lvl[1]})  **${zmi2Price.toFixed(2)} M** `;
+                    r += `\nArceuus Library  (${lvl[0]}-${lvl[1]})  **${arceus2Price.toFixed(2)} M** `;
+                }
+
+            }
+        }
+
+        return r;
+        /*
         var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price Runecrafting ${lvl[0]}-${lvl[1]} **`;
@@ -764,8 +833,9 @@ exports.runecraftingCalc = function(q, msg) {
             }
         }
 
-        return r;
+        return r;*/
     } catch (error) {
+        console.log(error);
         return `Right command is: \n\n **${msg} 1-99 **`;
     }
 
