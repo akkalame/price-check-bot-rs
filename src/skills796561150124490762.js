@@ -732,7 +732,7 @@ exports.runecraftingCalc = function(q, msg) {
 
                     if (lvl[1] <= 99 & lvl[1] > 60) {
 
-                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
+                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                         lava2Price = (xpLeft * 80) / 1000000;
 
                         totalPrice = lava2Price;
