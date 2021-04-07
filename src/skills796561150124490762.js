@@ -647,11 +647,10 @@ exports.runecraftingCalc = function(q, msg) {
     /*LVL 1->23 - 140GP/XP
     LVL 23->60 (LAVAS *LUNAR DIPLO REQ*) - 132GP/XP
     LVL 60->99 (LAVAS *LUNAR DIPLO REQ*) - 80GP/XP
-    LVL 1->50 (ZMI)  - 140GP/XP
-    LVL 50->99 (ZMI) - 100GP/XP
+    LVL 77->99 (Zeah)  - 65GP/XP
 */
     try {
-        var fPrice, lavaPrice, lava2Price, zmiPrice, zmi2Price, xpLeft, totalPrice, r;
+        var fPrice, lavaPrice, lava2Price, zPrice, z2Price, xpLeft, totalPrice, r;
         var lvl = q.split('-');
         r = `**Price ${capitalize(msg)} ${lvl[0]}-${lvl[1]} **`;
 
@@ -662,7 +661,7 @@ exports.runecraftingCalc = function(q, msg) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                 fPrice = (xpLeft * 140) / 1000000;
-                r += `\nRegular way  **${fPrice.toFixed(2)} M** `;
+                r += `\nCrafting Air/Mind/Water/Earth/Fire/Body or Making tiaras  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 60 & lvl[1] > 23) {
 
@@ -675,7 +674,7 @@ exports.runecraftingCalc = function(q, msg) {
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nRegular way (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
+                r += `\nCrafting Air/Mind/Water/Earth/Fire/Body or Making tiaras (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (23-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 99 & lvl[1] > 60) {
@@ -689,11 +688,25 @@ exports.runecraftingCalc = function(q, msg) {
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
                 lava2Price = (xpLeft * 80) / 1000000;
 
-                totalPrice = fPrice + lavaPrice + lava2Price;
+               if(lvl[1] > 77){ 
+                	xpLeft = Math.abs(xpLvl['77'] - xpLvl['60'])
+                	zPrice = (xpLeft * 80) / 1000000;
 
-                r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nRegular way (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
+                	xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['77'])
+                	z2Price = (xpLeft * 65) / 1000000;
+
+                	totalPrice = fPrice + lavaPrice + zPrice + z2Price;
+            	}else{
+
+               		totalPrice = fPrice + lavaPrice + lava2Price;
+               	}
+                r += `\nTotal minimum  **${totalPrice.toFixed(2)} M** \n`;
+                r += `\nCrafting Air/Mind/Water/Earth/Fire/Body or Making tiaras (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (23-60)  **${lavaPrice.toFixed(2)} M** `;
+                if(lvl[1] > 77){
+                	r += `\nLava Runes/ZMI (60-77)  **${zPrice.toFixed(2)} M** `;
+                	r += `\nZEAH (77-${lvl[1]})  **${z2Price.toFixed(2)} M** `;
+            	}
                 r += `\nLava Runes/ZMI (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
