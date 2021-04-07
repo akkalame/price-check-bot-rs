@@ -661,7 +661,7 @@ exports.runecraftingCalc = function(q, msg) {
 
                 xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                 fPrice = (xpLeft * 140) / 1000000;
-                r += `\nCrafting Air/Mind/Water/Earth/Fire/Body or Making tiaras  **${fPrice.toFixed(2)} M** `;
+                r += `\nAir/Mind/Water/Earth/Fire/Body  **${fPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 60 & lvl[1] > 23) {
 
@@ -674,7 +674,7 @@ exports.runecraftingCalc = function(q, msg) {
                 totalPrice = fPrice + lavaPrice;
 
                 r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nCrafting Air/Mind/Water/Earth/Fire/Body or Making tiaras (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
+                r += `\nAir/Mind/Water/Earth/Fire/Body (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (23-${lvl[1]})  **${lavaPrice.toFixed(2)} M** `;
             }
             if (lvl[1] <= 99 & lvl[1] > 60) {
@@ -701,13 +701,13 @@ exports.runecraftingCalc = function(q, msg) {
                		totalPrice = fPrice + lavaPrice + lava2Price;
                	}
                 r += `\nTotal minimum  **${totalPrice.toFixed(2)} M** \n`;
-                r += `\nCrafting Air/Mind/Water/Earth/Fire/Body or Making tiaras (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
+                r += `\nAir/Mind/Water/Earth/Fire/Body (${lvl[0]}-23) **${fPrice.toFixed(2)} M** `;
                 r += `\nLava Runes/ZMI (23-60)  **${lavaPrice.toFixed(2)} M** `;
+                r += `\nLava Runes/ZMI (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
                 if(lvl[1] > 77){
-                	r += `\nLava Runes/ZMI (60-77)  **${zPrice.toFixed(2)} M** `;
+                	r += `\n\nLava Runes/ZMI (60-77)  **${zPrice.toFixed(2)} M** `;
                 	r += `\nZEAH (77-${lvl[1]})  **${z2Price.toFixed(2)} M** `;
             	}
-                r += `\nLava Runes/ZMI (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
             }
 
         } else {
@@ -732,12 +732,27 @@ exports.runecraftingCalc = function(q, msg) {
                     xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['60'])
                     lava2Price = (xpLeft * 80) / 1000000;
 
-                    totalPrice = lavaPrice + lava2Price;
+                    if(lvl[1] > 77){ 
+	                	xpLeft = Math.abs(xpLvl['77'] - xpLvl['60'])
+	                	zPrice = (xpLeft * 80) / 1000000;
 
-                    r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
+	                	xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['77'])
+	                	z2Price = (xpLeft * 65) / 1000000;
+
+	                	totalPrice = lavaPrice + zPrice + z2Price;
+	            	}else{
+
+	               		totalPrice = lavaPrice + lava2Price;
+	               	}
+
+                    r += `\nTotal minimum  **${totalPrice.toFixed(2)} M** \n`;
                     r += `\nLava Runes/ZMI (${lvl[0]}-60)  **${lavaPrice.toFixed(2)} M** `;
                     r += `\nLava Runes/ZMI (60-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
+                    if(lvl[1] > 77){
+	                	r += `\n\nLava Runes/ZMI (60-77)  **${zPrice.toFixed(2)} M** `;
+	                	r += `\nZEAH (77-${lvl[1]})  **${z2Price.toFixed(2)} M** `;
+            		}
                 }
 
             } else {
@@ -748,11 +763,37 @@ exports.runecraftingCalc = function(q, msg) {
                         xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                         lava2Price = (xpLeft * 80) / 1000000;
 
-                        totalPrice = lava2Price;
+                        if(lvl[1] > 77){ 
+		                	zPrice = 0;
+		                	if (lvl[0] < 77) {
+		                		xpLeft = Math.abs(xpLvl['77'] - xpLvl[lvl[0]])
+		                		zPrice = (xpLeft * 80) / 1000000;
 
-                        r += `\nTotal Price  **${totalPrice.toFixed(2)} M** \n`;
+		                		xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['77'])
+		                		z2Price = (xpLeft * 65) / 1000000;
+		                	}else{
+		                		xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
+		                		z2Price = (xpLeft * 65) / 1000000;
+		                	}
+
+		                	totalPrice = zPrice + z2Price;
+		            	}else{
+
+		               		totalPrice = lava2Price;
+		               	}
+
+                        r += `\nTotal minimum  **${totalPrice.toFixed(2)} M** \n`;
                         r += `\nLava Runes/ZMI (${lvl[0]}-${lvl[1]})  **${lava2Price.toFixed(2)} M** `;
 
+                        if(lvl[1] > 77){
+		                	if (lvl[0] < 77){
+		                		r += `\n\nLava Runes/ZMI (${lvl[0]}-77)  **${zPrice.toFixed(2)} M** `;
+		                		r += `\nZEAH (77-${lvl[1]})  **${z2Price.toFixed(2)} M** `;
+		                	
+		                	}else{r += `\nZEAH (${lvl[0]}-${lvl[1]})  **${z2Price.toFixed(2)} M** `;}
+		                	
+		                	
+            			}
                     }
 
                 }
