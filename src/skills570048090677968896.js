@@ -282,7 +282,7 @@ exports.wcCalc = function(q, msg) {
                 if (lvl[1] <= 70 & lvl[1] > 41) {
 
 
-                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['41'])
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                     lavaPrice = (xpLeft * 40) / 1000000;
 
                     totalPrice = lavaPrice;
@@ -311,7 +311,7 @@ exports.wcCalc = function(q, msg) {
 
                     if (lvl[1] <= 99 & lvl[1] > 70) {
 
-                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
+                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                         lava2Price = (xpLeft * 35) / 1000000;
 
                         totalPrice = lava2Price;
@@ -391,7 +391,7 @@ exports.thievingCalc = function(q, msg) {
                 if (lvl[1] <= 80 & lvl[1] > 55) {
 
 
-                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['55'])
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                     lavaPrice = (xpLeft * 40) / 1000000;
 
                     totalPrice = lavaPrice;
@@ -500,7 +500,7 @@ exports.fishCalc = function(q, msg) {
                 if (lvl[1] <= 70 & lvl[1] > 50) {
 
 
-                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['50'])
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                     lavaPrice = (xpLeft * 35) / 1000000;
 
                     totalPrice = lavaPrice;
@@ -529,7 +529,7 @@ exports.fishCalc = function(q, msg) {
 
                     if (lvl[1] <= 99 & lvl[1] > 70) {
 
-                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['70'])
+                        xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                         lava2Price = (xpLeft * 20) / 1000000;
 
                         totalPrice = lava2Price;
@@ -609,7 +609,7 @@ exports.hunterCalc = function(q, msg) {
                 if (lvl[1] <= 60 & lvl[1] > 30) {
 
 
-                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl['30'])
+                    xpLeft = Math.abs(xpLvl[lvl[1]] - xpLvl[lvl[0]])
                     lavaPrice = (xpLeft * 55) / 1000000;
 
                     totalPrice = lavaPrice;
